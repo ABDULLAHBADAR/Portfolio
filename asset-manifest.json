@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/Portfolio/static/css/main.efd879e3.css",
+    "main.js": "/Portfolio/static/js/main.d2e5c425.js",
+    "static/js/787.b98c23e5.chunk.js": "/Portfolio/static/js/787.b98c23e5.chunk.js",
+    "static/media/YouSound.png": "/Portfolio/static/media/YouSound.933f0998b5550ada850b.png",
+    "static/media/FalayaImage.png": "/Portfolio/static/media/FalayaImage.4986155b77257d12e9ed.png",
+    "static/media/CodeswaveImage.png": "/Portfolio/static/media/CodeswaveImage.958f7dcd0af164659b8a.png",
+    "static/media/FAHMImage.png": "/Portfolio/static/media/FAHMImage.c6a7d560048eec4f8a3f.png",
+    "static/media/CoFiImg.png": "/Portfolio/static/media/CoFiImg.d10451c458a42d5bd740.png",
+    "static/media/AlohaImage.png": "/Portfolio/static/media/AlohaImage.58c95600a9f27efa2685.png",
+    "static/media/sky1.jpg": "/Portfolio/static/media/sky1.a6cc71a59289ddfe4059.jpg",
+    "static/media/ROR.png": "/Portfolio/static/media/ROR.40308f801b03c8b265a5.png",
+    "static/media/Raleway-Regular.ttf": "/Portfolio/static/media/Raleway-Regular.c268e80ba67c4a294054.ttf",
+    "static/media/mern.png": "/Portfolio/static/media/mern.4880c2f13a018f34b2ec.png",
+    "static/media/AWS.png": "/Portfolio/static/media/AWS.6f5127c181c2a4fa8542.png",
+    "static/media/Oswald-VariableFont_wght.ttf": "/Portfolio/static/media/Oswald-VariableFont_wght.46d7853f0185f6bf0c93.ttf",
+    "static/media/MAB CV.pdf": "/Portfolio/static/media/MAB CV.2adab5102a551ea4607a.pdf",
+    "static/media/github.png": "/Portfolio/static/media/github.cf072ed8cb1c0cd6d304.png",
+    "static/media/react.png": "/Portfolio/static/media/react.8fb3c770f5d958c57444.png",
+    "static/media/sass.png": "/Portfolio/static/media/sass.a54e794cbe5e53f8ff7a.png",
+    "static/media/Oswald-Light.ttf": "/Portfolio/static/media/Oswald-Light.0db1d0c56bdf030d9f31.ttf",
+    "static/media/rocketship.png": "/Portfolio/static/media/rocketship.d0c1f87c09d90086d92e.png",
+    "static/media/bootstrap.png": "/Portfolio/static/media/bootstrap.f88cc32674ccebc9d650.png",
+    "static/media/tailwind.png": "/Portfolio/static/media/tailwind.a467208d973bd89f034f.png",
+    "static/media/docker.png": "/Portfolio/static/media/docker.56d52694bada9b0ff599.png",
+    "static/media/firebase.png": "/Portfolio/static/media/firebase.0388a8a26f2fdcc03987.png",
+    "static/media/html.png": "/Portfolio/static/media/html.9b112ecbe9c32f50b3a8.png",
+    "static/media/css.png": "/Portfolio/static/media/css.52a12146807d268076ce.png",
+    "static/media/js.png": "/Portfolio/static/media/js.69c0502ab3a0e1edbb56.png",
+    "static/media/helvetica-neu.ttf": "/Portfolio/static/media/helvetica-neu.8a19678078a6b21c8057.ttf",
+    "static/media/MAB-logo.png": "/Portfolio/static/media/MAB-logo.a7f19c192e48c61b0da4.png",
+    "static/media/logo.svg": "/Portfolio/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/Portfolio/index.html",
+    "main.efd879e3.css.map": "/Portfolio/static/css/main.efd879e3.css.map",
+    "main.d2e5c425.js.map": "/Portfolio/static/js/main.d2e5c425.js.map",
+    "787.b98c23e5.chunk.js.map": "/Portfolio/static/js/787.b98c23e5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.efd879e3.css",
+    "static/js/main.d2e5c425.js"
+  ]
+}
