@@ -1,0 +1,64 @@
+
+::-webkit-scrollbar {
+    width: 4px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: none; 
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #cccccc; 
+  }
+ #projects-page{
+  height: 100vh; 
+  overflow-y: scroll;
+    img{
+      aspect-ratio: 19/9;
+    }
+    .card{
+        color: white;
+        background: #000000;
+        animation: fadeInUp 1s 2.3s backwards;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        &:hover{
+          transform: scale(1.06);
+        }
+    }
+    .card-title{
+      font-family: 'Oswald';
+    }
+    .card-body{
+      font-family: 'Raleway';
+    }
+    button{
+        color: white;
+        font-family: 'Raleway';
+    }
+    .githubbtn{
+      border: 1px solid #6fffe9;
+      border-radius: 0;
+    }
+    .livebtn{
+      border-radius: 0;
+      background-color: #6fffe9;
+      color: black;
+    }
+ }
+@media only screen and (width < 576px){
+  
+::-webkit-scrollbar {
+  width: 0px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: none; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white; 
+}
+}

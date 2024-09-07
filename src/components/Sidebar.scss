@@ -1,0 +1,136 @@
+.wrapper {
+  position: fixed;
+  background-color: rgb(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  z-index: 4;
+}
+
+.sidebar {
+  width: 60px;
+  box-shadow: 1px 0px 6px 0px rgba(204,204,204,0.6);
+-webkit-box-shadow: 1px 0px 6px 0px rgba(204,204,204,0.6);
+-moz-box-shadow: 1px 0px 6px 0px rgba(204,204,204,0.6);
+  #logo-wrapper {
+    align-items: center;
+    justify-content: center;
+    #logo {
+      max-width: 60px;
+      
+    }
+  }
+  nav {
+    a {
+      svg {
+        color: #ffffff;
+        &:hover {
+          color: #6fffe9 !important;
+        }
+      }
+      &.active {
+        svg {
+          color: #6fffe9;
+        }
+      }
+    }
+  }
+  ul {
+    li {
+      a {
+        color: #ffffff;
+        &:hover {
+          color: #6fffe9;
+        }
+      }
+    }
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.sidebar-mobile {
+  width: 75%;
+  justify-content: flex-start !important;
+  gap: 50px !important; 
+  box-shadow: 1px 0px 6px 0px rgba(204,204,204,0.6);
+  -webkit-box-shadow: 1px 0px 6px 0px rgba(204,204,204,0.6);
+  -moz-box-shadow: 1px 0px 6px 0px rgba(204,204,204,0.6);
+  #logo-wrapper {
+    align-items: center;
+    justify-content: start;
+    padding-left: 5px;
+    text-decoration: none;
+    #logo {
+      max-width: 70px;
+    }
+    span {
+      font-size: 24px;
+      color: white;
+      font-family: 'Oswald';
+    }
+  }
+
+  nav {
+    align-items: flex-start !important;
+    align-self: flex-start !important;
+    padding-left: 20px;
+    a {
+      text-decoration: none;
+      svg {
+        color: #ffffff;
+        &:hover {
+          color: #6fffe9 !important;
+        }
+      }
+     
+    }
+
+    span {
+      color: white;
+      font-size: 20px;
+      font-family: 'Oswald-Light';
+    }
+  }
+
+  ul {
+    flex-direction: row !important;
+    justify-content: space-evenly !important;
+    margin-top: auto;
+    margin-bottom: 20px;
+    li {
+      a {
+        color: #ffffff;
+        &:hover {
+          color: #6fffe9;
+        }
+      }
+    }
+
+    padding: 0;
+    list-style: none;
+  }
+}
+@media (orientation: landscape) {
+  .toggler {
+    display: none;
+  }
+  .sidebar,
+  #logo-wrapper {
+    span {
+      display: none;
+    }
+  }
+}
+@media only screen and (width < 576px) {
+  .sidebar {
+    display: none !important;
+  }
+
+  .toggler {
+    display: block;
+    position: fixed;
+    z-index: 2;
+    padding: 20px;
+    cursor: pointer;
+  }
+}

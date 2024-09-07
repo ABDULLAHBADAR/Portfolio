@@ -1,0 +1,28 @@
+#about-page{
+    img{
+        max-width: 80%;
+    }
+}
+@media only screen and (width >= 576px) {
+    #about-page{
+        img{
+            animation: fadeInRight 1.5s 2.6s backwards;
+        }
+    }
+}
+
+@media only screen and (width < 576px) {
+    #about-page{
+        #imgwrapper{
+        img{
+            max-width: 35%;
+            height: auto;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: rgba(255, 255, 255, 0.559) 0px 1px 4px;
+            object-position: top right;
+            aspect-ratio: 1/1;
+        }
+    }
+    }
+}

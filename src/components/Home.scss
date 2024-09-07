@@ -1,0 +1,109 @@
+#homepage{
+    h1{
+        color: white; 
+        font-family: "Oswald", 'Tahoma'; 
+        animation: fadeInUp 1s 1s backwards;
+        cursor:context-menu;
+      
+    }
+    h2{
+        color: #cccccc;
+        font-family: 'Raleway'; 
+        animation: fadeIn 1s 2.0s backwards;
+    }
+    .flat-button{
+        color: #6fffe9; 
+        letter-spacing: 4px;
+        font-family: 'Oswald';
+        text-decoration: none;
+        width: fit-content;
+        padding: 10px 18px;
+        border: 1px solid #6fffe9; 
+        animation: fadeInUp 1s 2.5s backwards; 
+
+        &:hover{
+            background: #6fffe9;
+            color: #000000; 
+        }
+        &:focus{
+            background: #6fffe9;
+            color: #000000; 
+        }
+
+    }
+    .view-resume{
+        color: #ffffff; 
+        letter-spacing: 4px;
+        font-family: 'Oswald';
+        text-decoration: none;
+        width: fit-content;
+        padding: 10px 18px;
+        animation: fadeInUp 1s 2.5s backwards; 
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+    .rocketship{
+        display:none;
+    }
+    .planet{
+        animation: fadeInUp 1s 1s backwards;
+        &:hover + .rocketship{
+           
+            display: inline;
+            position: absolute; 
+            left: 30%;
+            bottom: 45%; 
+            width: 20% !important; 
+            max-height: 90%; 
+            animation: move-diagonal 3s linear infinite  ;   
+    }
+    }
+}
+@keyframes move-diagonal{
+    0% {
+		transform: translateY(-500);
+        opacity: 0;
+	}
+    30%{
+        opacity: 0.8
+    }
+	100% {
+		transform: translate(500px, -500px);
+	}
+}
+
+@media only screen and (width < 576px) {
+    #homepage{
+        #imagewrapper{
+        img{
+           width: 70% !important;
+           object-fit: contain;
+        }
+    }
+
+       
+        
+    }
+}
+@media only screen and (width >= 768px){
+    #homepage{
+        img{
+            width: 90% !important;
+        }
+       
+    }
+}
+@media only screen and (width >= 1200px){
+    #homepage{
+        h1{
+            font-size: calc(1.625rem + 4.5vw);
+        }
+        h2{
+            font-size: calc(1.375rem + 1.5vw);
+        }
+        .flat-button, .view-resume{
+            font-size: calc(1.275rem + .3vw)!important;        }
+    }
+
+}

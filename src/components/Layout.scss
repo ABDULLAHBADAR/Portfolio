@@ -1,0 +1,40 @@
+
+.container-fluid{
+    
+    height: 100%; 
+}
+#about-page,
+#projects-page,
+#skills-page, 
+#contact-page{
+    
+    h1{
+        font-family: 'Oswald'; 
+        color:#6fffe9;
+        animation: fadeInUp 1s 1s backwards; 
+        cursor:context-menu;
+
+    }
+    p.fs-4{
+        color: white; 
+        font-family: 'Raleway';
+        animation: fadeInUp 1s 1.8s backwards; 
+    }
+    .text-animate-hover{
+        &:hover{
+            color:white; 
+            
+        }
+    }
+}
+@media only screen and (width >= 1200px){
+    #about-page, 
+    #projects-page,
+    #skills-page, 
+    #contact-page{
+        h1{
+            font-size: calc(1.525rem + 3.3vw);
+        }
+       
+    }
+}

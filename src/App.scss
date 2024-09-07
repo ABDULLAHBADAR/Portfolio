@@ -1,0 +1,27 @@
+//global styles  are defined here
+
+$primary-color: #6fffe9; 
+@import 'animate.css';
+@import '~loaders.css/src/animations/line-scale-pulse-out.scss';
+
+@font-face {
+  font-family: 'Helvetica Neue'; 
+  src: url('./assets/fonts/helvetica-neu.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Oswald-Light'; 
+  src: url('./assets/fonts/Oswald-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Oswald'; 
+  src: url('./assets/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Raleway'; 
+  src: url('./assets/fonts/Raleway-Regular.ttf') format('truetype');
+}
+
+//default font for input and text areas
+input, textarea{
+  font-family: 'Helvetica Neue'; 
+}
