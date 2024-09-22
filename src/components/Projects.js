@@ -23,7 +23,7 @@ const Projects = () => {
       title: 'Assemble',
       description: `A platform for influencers who can get their sessions booked
         by their fans, fans can ask for the video and audio responses from their idols to proceed with their goals,
-        upgraded this entire website to a new initiative for my companys' client with one team member only (Ruby on Rails)`,
+        upgraded this entire website to a new initiative for my companys' client with one team member only`,
       imageUrl: 'https://ucarecdn.com/f1af7ea7-1620-4d44-ba30-fd4b08de2b74/Screenshot20240406at124538AM.png',
       liveDemoUrl: 'https://assemble.fyi/'
     },
@@ -31,7 +31,7 @@ const Projects = () => {
       title: 'CoFi',
       description: `CoFi is the first multi-party payment platform for premium elective procedures. 
         With CoFi, patients can pay two or more parties — surgeon, optometrist, facility — right at the surgeon's office. 
-        Hundreds of practices use CoFi today to compliantly handle co-management and ASC fees, delighting partners and patients alike. (Ruby on Rails)`,
+        Hundreds of practices use CoFi today to compliantly handle co-management and ASC fees, delighting partners and patients alike.`,
       imageUrl: CofiImage,
       liveDemoUrl: 'https://www.cofimd.com/'
     },
