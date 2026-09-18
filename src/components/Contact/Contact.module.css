@@ -1,0 +1,161 @@
+.contact {
+  padding: 112px 64px;
+  border-top: 1px solid var(--line-10);
+  background: var(--ink);
+  color: var(--paper);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 64px;
+  align-items: start;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--card-sub);
+}
+.title {
+  font-weight: 850;
+  font-size: 64px;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  margin: 18px 0 0;
+}
+.titleEm {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--peach);
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.input,
+.textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--dline-28);
+  padding: 12px 2px;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  color: var(--paper);
+  outline: none;
+}
+.textarea {
+  resize: none;
+}
+.input:focus,
+.textarea:focus {
+  border-color: var(--peach);
+}
+.submit {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--paper);
+  color: var(--ink);
+  border: none;
+  padding: 15px 30px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.submit:hover {
+  background: var(--peach);
+}
+.submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.error {
+  font-size: 14px;
+  color: var(--peach);
+}
+.thanks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 30px;
+  border: 1px solid var(--peach-40);
+  border-radius: 18px;
+  background: var(--peach-08);
+}
+.thanksTitle {
+  font-weight: 800;
+  font-size: 22px;
+}
+.thanksSub {
+  font-size: 15px;
+  color: var(--card-sub);
+}
+
+/* ---------- premium touches ---------- */
+/* "works." underlines itself once the heading reveals */
+.titleEm {
+  position: relative;
+}
+.titleEm::after {
+  content: '';
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  bottom: 6px;
+  height: 2px;
+  background: var(--peach);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .titleEm::after {
+    transition: transform 0.7s cubic-bezier(0.65, 0, 0.25, 1) 0.55s;
+  }
+  .title:global(.on) .titleEm::after {
+    transform: scaleX(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .titleEm::after {
+    transform: scaleX(1);
+  }
+}
+
+/* focus rule slides in from the left instead of snapping */
+.input,
+.textarea {
+  background-image: linear-gradient(var(--peach), var(--peach));
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0% 1px;
+  transition: background-size 0.45s cubic-bezier(0.65, 0, 0.25, 1);
+}
+.input:focus,
+.textarea:focus {
+  background-size: 100% 1px;
+}
+
+.submitArrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.submit:hover .submitArrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 860px) {
+  .contact {
+    padding: 84px 24px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+  .title {
+    font-size: 40px;
+  }
+}

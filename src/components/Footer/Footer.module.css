@@ -1,0 +1,20 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 30px 64px;
+  background: var(--footer-bg);
+  color: var(--taupe-3);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.backToTop {
+  color: var(--taupe-3);
+  text-decoration: none;
+}
+.backToTop:hover {
+  color: var(--paper);
+}

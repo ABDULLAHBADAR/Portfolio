@@ -1,0 +1,438 @@
+/* ================ (04) · Builds ================
+   Index rail + live specimen stage. The stage renders each preview at its
+   own desktop width (1440px) and scales it down through --scale, which the
+   component keeps in step with the stage's measured width. */
+
+.builds {
+  padding: 112px 64px 40px;
+  border-top: 1px solid var(--line-10);
+}
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+.title {
+  font-weight: 850;
+  font-size: 62px;
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+
+/* ---------------- intro: lede + counted stats ---------------- */
+.intro {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 56px;
+  align-items: start;
+  padding-bottom: 44px;
+  border-bottom: 1px solid var(--line-10);
+  margin-bottom: 40px;
+}
+.lede {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--brown-2);
+  margin: 0;
+  max-width: 600px;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 30px;
+  margin: 0;
+}
+.statV {
+  font-weight: 850;
+  font-size: 32px;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin: 0;
+}
+.statK {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin: 7px 0 0;
+}
+
+/* ---------------- viewer shell ---------------- */
+.viewer {
+  display: grid;
+  grid-template-columns: 330px minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
+}
+
+/* ---------------- the index ---------------- */
+.indexCol {
+  position: relative;
+  border: 1px solid var(--line-12);
+  border-radius: 14px;
+  background: var(--surface-card);
+  overflow: hidden;
+}
+.indexCol::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 46px;
+  /* an explicit zero-alpha stop, not `transparent`: that keyword is
+     rgba(0,0,0,0) and fades through grey in Safari */
+  background: linear-gradient(
+    to top,
+    var(--surface-card),
+    rgba(246, 240, 227, 0)
+  );
+  pointer-events: none;
+}
+.indexHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line-10);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.indexCount {
+  color: var(--terracotta);
+}
+.rail {
+  max-height: 620px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-22) transparent;
+}
+.rail::-webkit-scrollbar {
+  width: 8px;
+}
+.rail::-webkit-scrollbar-thumb {
+  background: var(--line-16);
+  border-radius: 99px;
+  border: 2px solid var(--surface-card);
+}
+.rail::-webkit-scrollbar-thumb:hover {
+  background: var(--line-30);
+}
+
+.groupLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 16px 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--taupe-3);
+}
+.groupRule {
+  flex: 1;
+  height: 1px;
+  background: var(--line-10);
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  column-gap: 10px;
+  padding: 7px 16px;
+  text-decoration: none;
+  color: inherit;
+  border-left: 2px solid transparent;
+}
+.rowNum {
+  grid-row: span 2;
+  padding-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--taupe-3);
+}
+.rowName {
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: -0.012em;
+  line-height: 1.25;
+  color: var(--ink-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rowLoc {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  color: var(--taupe);
+  margin-top: 1px;
+}
+.row:hover {
+  background: var(--surface-alt);
+}
+.row:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: -2px;
+}
+.rowOn {
+  background: var(--surface-alt);
+  border-left-color: var(--terracotta);
+}
+.rowOn .rowName {
+  color: var(--terracotta);
+}
+.rowOn .rowNum {
+  color: var(--terracotta);
+}
+
+/* ---------------- the stage ---------------- */
+.stageCol {
+  min-width: 0;
+}
+.stageMain {
+  position: relative;
+}
+.screen {
+  --screen-h: 620px;
+  position: relative;
+  height: var(--screen-h);
+  overflow: hidden;
+  background: var(--surface-card);
+}
+/* the preview itself, laid out at full desktop width then scaled to fit.
+   --scale is written by the component's ResizeObserver; the fallback keeps
+   the first paint sane before it fires. */
+.pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: calc(var(--screen-h) / var(--scale, 0.5));
+  border: 0;
+  background: #fff;
+  transform: scale(var(--scale, 0.5));
+  transform-origin: 0 0;
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  background: var(--surface-card);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe-3);
+}
+.loadingBar {
+  position: relative;
+  width: 132px;
+  height: 2px;
+  background: var(--line-10);
+  overflow: hidden;
+}
+.loadingBar::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 38%;
+  background: var(--terracotta);
+}
+
+/* the preview stays inert until asked for, so a wheel over the section
+   scrolls the page rather than the embedded site */
+.shield {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: block;
+}
+.shieldHint {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  padding: 7px 12px;
+  border-radius: 99px;
+  background: rgba(26, 23, 18, 0.74);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.shield:hover .shieldHint,
+.shield:focus-visible .shieldHint {
+  background: var(--terracotta);
+}
+.shield:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: -2px;
+}
+
+/* ---------------- caption under the stage ---------------- */
+.meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin-top: 18px;
+}
+.metaMain {
+  min-width: 0;
+}
+.metaName {
+  font-weight: 800;
+  font-size: 17.5px;
+  letter-spacing: -0.02em;
+}
+.metaLine {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15.5px;
+  color: var(--terracotta);
+  margin-left: 10px;
+}
+.metaFacts {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.metaDot {
+  color: var(--line-22);
+}
+.metaLink {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-22);
+  padding-bottom: 1px;
+}
+.metaLink:hover {
+  color: var(--terracotta);
+  border-bottom-color: var(--terracotta);
+}
+.metaLinkQuiet {
+  color: var(--taupe-3);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .loadingBar::after {
+    animation: sp-load 1.15s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+  .row,
+  .metaLink,
+  .shieldHint {
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease;
+  }
+}
+@keyframes sp-load {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(363%);
+  }
+}
+
+@media (max-width: 1100px) {
+  .viewer {
+    grid-template-columns: 268px minmax(0, 1fr);
+    gap: 24px;
+  }
+  .screen {
+    --screen-h: 520px;
+  }
+  .rail {
+    max-height: 520px;
+  }
+  .intro {
+    gap: 36px;
+  }
+  .title {
+    font-size: 48px;
+  }
+}
+
+/* Below the page's mobile breakpoint the stage goes away: a 1440px design
+   scaled onto a phone is unreadable, and the rows are already links to the
+   real thing. Mirrors VIEWER_MQ in Specimens.tsx. */
+@media (max-width: 860px) {
+  .builds {
+    padding: 84px 24px 24px;
+  }
+  .title {
+    font-size: 42px;
+  }
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .viewer {
+    grid-template-columns: 1fr;
+  }
+  .stageCol {
+    display: none;
+  }
+  .rail {
+    max-height: 70vh;
+  }
+  .row {
+    padding-right: 34px;
+  }
+  /* nothing is "selected" without a stage to select into */
+  .rowOn {
+    background: none;
+    border-left-color: transparent;
+  }
+  .rowOn .rowName {
+    color: var(--ink-2);
+  }
+  .rowOn .rowNum {
+    color: var(--taupe-3);
+  }
+  /* every row opens the live preview directly on touch */
+  .row::after {
+    content: '↗';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: var(--taupe-3);
+  }
+}

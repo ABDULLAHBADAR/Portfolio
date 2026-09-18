@@ -1,0 +1,105 @@
+.about {
+  padding: 112px 64px;
+  border-top: 1px solid var(--line-10);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 0.42fr 1fr;
+  gap: 52px;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+.statement {
+  font-size: 33px;
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--ink-2);
+}
+.em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--terracotta);
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 54px;
+  border-top: 1px solid var(--line-12);
+  padding-top: 32px;
+}
+.statValue {
+  font-weight: 800;
+  font-size: 46px;
+  letter-spacing: -0.03em;
+}
+.statLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin-top: 6px;
+}
+
+@media (max-width: 860px) {
+  .about {
+    padding: 84px 24px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .statement {
+    font-size: 23px;
+  }
+  .stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-top: 36px;
+  }
+  .statValue {
+    font-size: 36px;
+  }
+}
+
+/* ---------- cinematic statement + stats ---------- */
+/* the emphasised phrase underlines itself after the words land */
+@media (prefers-reduced-motion: no-preference) {
+  .em {
+    background-image: linear-gradient(var(--terracotta), var(--terracotta));
+    background-repeat: no-repeat;
+    background-position: left 94%;
+    background-size: 0% 2px;
+    transition: background-size 0.8s cubic-bezier(0.65, 0, 0.25, 1) 1.2s;
+  }
+  .statement:global(.on) .em {
+    background-size: 100% 2px;
+  }
+}
+
+/* terracotta tick draws above each stat before the value rolls up */
+.stat::before {
+  content: '';
+  display: block;
+  width: 34px;
+  height: 2px;
+  background: var(--terracotta);
+  margin-bottom: 14px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .stat::before {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.65, 0, 0.25, 1) calc(var(--d, 0s) + 0.15s);
+  }
+  .stat:global(.on)::before {
+    transform: none;
+  }
+}

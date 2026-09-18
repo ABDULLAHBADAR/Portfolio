@@ -1,0 +1,383 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 760px;
+  max-height: 1000px;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  cursor: crosshair;
+}
+
+/* ---------- wordmark (replaces nav) ---------- */
+.wordmark {
+  position: absolute;
+  top: 34px;
+  left: 64px;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+.wordmarkChip {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: var(--paper);
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.navPill {
+  position: absolute;
+  top: 34px;
+  right: 64px;
+  z-index: 7;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--line-30);
+  padding: 11px 20px;
+  border-radius: 999px;
+}
+.navPill:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- default text content ---------- */
+.contentGrid {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1.16fr 0.84fr;
+  align-items: center;
+  padding: 0 64px;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  animation: ar-rise 0.8s 0.05s both ease-out;
+}
+.serifSub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 31px;
+  color: var(--terracotta);
+  margin-top: 16px;
+  animation: ar-rise 0.8s 0.16s both ease-out;
+}
+.title {
+  font-weight: 900;
+  font-size: 132px;
+  line-height: 0.84;
+  letter-spacing: -0.045em;
+  margin: 10px 0 0;
+  animation: ar-rise 0.9s 0.26s both ease-out;
+}
+.lead {
+  font-size: 23px;
+  line-height: 1.45;
+  max-width: 450px;
+  color: var(--brown);
+  margin: 28px 0 0;
+  animation: ar-rise 0.9s 0.4s both ease-out;
+}
+.leadItalic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 29px;
+  color: var(--ink);
+}
+.btnRow {
+  display: flex;
+  gap: 13px;
+  margin-top: 36px;
+  animation: ar-rise 0.9s 0.52s both ease-out;
+}
+.btnPrimary,
+.btnSecondary {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 15px 26px;
+  border-radius: 999px;
+  text-decoration: none;
+}
+.btnPrimary {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btnPrimary:hover {
+  background: var(--terracotta);
+}
+.btnSecondary {
+  border: 1px solid var(--line-32);
+  color: var(--ink);
+}
+.btnSecondary:hover {
+  border-color: var(--ink);
+  background: var(--line-04);
+}
+
+/* ---------- portrait cut-out (subject on paper — no photo rectangle).
+   Waist-up framing: the image is cropped at the stomach, bottom-anchored so
+   the crop line sits on the hero's bottom edge. ---------- */
+.photo {
+  position: absolute;
+  right: clamp(40px, 7vw, 120px);
+  bottom: 0;
+  height: 76vh;
+  max-height: 720px;
+  width: auto;
+  z-index: 2;
+  pointer-events: none;
+  animation: ar-fadein 1s 0.3s both;
+  /* sub-px ink shadow hugging the alpha silhouette — masks the pale matte
+     fringe from background removal in every render mode (static filter,
+     never animated — the bgBlob lesson) */
+  filter: drop-shadow(0 0 1px rgba(26, 23, 18, 0.35));
+}
+
+/* ---------- three.js reveal layer ---------- */
+.glCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none; /* the DOM below stays live */
+}
+
+/* ---------- DOM blueprint layer (no-WebGL clip fallback + reduced motion) ---------- */
+.reveal {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: var(--reveal-bg);
+  opacity: 1;
+  pointer-events: none;
+  /* Pre-first-rAF state: zero-area clip → no flash of the full layer on load.
+     30px must match SCAN.RADIUS in scanReveal.ts (JS overwrites when it runs). */
+  clip-path: inset(50% 50% 50% 50% round 30px);
+  -webkit-clip-path: inset(50% 50% 50% 50% round 30px);
+  will-change: clip-path;
+  contain: layout paint; /* safe: hero is overflow:hidden anyway; isolates invalidation */
+}
+/* the GL renderer owns the reveal → the DOM layer stays out of the way */
+.hero[data-mode='gl'] .reveal {
+  display: none;
+}
+.hero[data-mode='reduced'] .glCanvas,
+.hero[data-mode='clip'] .glCanvas {
+  display: none;
+}
+.revealLabel {
+  position: absolute;
+  left: 64px;
+  top: 96px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+/* drafting grid backdrop */
+.fbGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      var(--line-05) 0 1px,
+      transparent 1px 48px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--line-05) 0 1px,
+      transparent 1px 48px
+    ),
+    repeating-linear-gradient(
+      to right,
+      var(--line-10) 0 1px,
+      transparent 1px 192px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--line-10) 0 1px,
+      transparent 1px 192px
+    );
+}
+/* schematic overrides for the duplicated hero text (same classes → same layout) */
+.fbText .eyebrow,
+.fbText .serifSub,
+.fbText .title,
+.fbText .lead,
+.fbText .leadItalic {
+  color: transparent;
+}
+.fbText .title {
+  -webkit-text-stroke: 1.5px rgba(26, 23, 18, 0.6);
+}
+.fbText .serifSub {
+  -webkit-text-stroke: 1px rgba(154, 90, 62, 0.62);
+}
+.fbText .eyebrow {
+  color: var(--terracotta); /* eyebrow stays legible — it's already schematic */
+}
+.fbText .lead {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 15px,
+    rgba(26, 23, 18, 0.28) 15px 16px,
+    transparent 16px 33px
+  );
+}
+.fbText .btnPrimary {
+  background: transparent;
+  border: 1px dashed rgba(26, 23, 18, 0.45);
+  color: rgba(26, 23, 18, 0.6);
+}
+.fbText .btnSecondary {
+  border-style: dashed;
+  color: rgba(26, 23, 18, 0.6);
+}
+.fbModules {
+  position: absolute;
+  left: 64px;
+  bottom: 58px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(26, 23, 18, 0.72);
+}
+
+/* ---------- hint cue ---------- */
+.hint {
+  position: absolute;
+  left: 64px;
+  bottom: 34px;
+  z-index: 6;
+  transition: opacity 0.4s ease;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hintStar {
+  font-size: 15px;
+  animation: ar-blink 1.6s infinite;
+}
+
+/* ---------- reduced motion: one slow pass, then rest at the default state ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hint {
+    display: none;
+  }
+  /* stop all infinite animation near the hero */
+  .bgBlob {
+    animation: none !important;
+  }
+  /* JS bails in this mode, so CSS owns clip-path: a single full-width band
+     wipes top→bottom once and ends hidden — the opaque layer must never end
+     covering the headline. `both` also holds the 0% state during the delay
+     (no flash). 30px matches SCAN.RADIUS in scanReveal.ts. */
+  .reveal {
+    animation: scan-pass 9s linear 1.4s 1 both;
+  }
+  @keyframes scan-pass {
+    0% {
+      clip-path: inset(0 0 100% 0 round 30px); /* zero-height band at top */
+    }
+    12% {
+      clip-path: inset(0 0 72% 0 round 30px); /* grows to a 28%-tall band */
+    }
+    88% {
+      clip-path: inset(72% 0 0 0 round 30px); /* band slides to the bottom */
+    }
+    100% {
+      clip-path: inset(100% 0 0 0 round 30px); /* collapses → hidden */
+    }
+  }
+}
+
+/* ---------- touch: the "move anywhere" cue is meaningless without hover ---------- */
+@media (hover: none) {
+  .hint {
+    display: none;
+  }
+}
+
+/* ---------- responsive (the scan window itself needs no CSS here: the px
+   clamps in scanSize() make it near-full-width on phones, and touch devices
+   get the pure autonomous scan via the coarse-pointer guard) ---------- */
+@media (max-width: 768px) {
+  .hero {
+    height: 100vh;
+    height: 100svh; /* mobile URL-bar viewport; the vh line is the fallback */
+    min-height: 620px;
+  }
+  .wordmark,
+  .revealLabel {
+    left: 24px;
+  }
+  .navPill {
+    right: 24px;
+  }
+  .hint {
+    left: 24px;
+    bottom: 24px;
+  }
+  .contentGrid {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+  }
+  .title {
+    font-size: clamp(56px, 16vw, 96px);
+  }
+  .serifSub {
+    font-size: 22px;
+  }
+  .lead {
+    font-size: 17px;
+    max-width: 340px;
+  }
+  .leadItalic {
+    font-size: 21px;
+  }
+  .btnPrimary,
+  .btnSecondary {
+    padding: 13px 20px;
+    font-size: 11.5px;
+  }
+  .photo {
+    height: 48vh; /* waist-up crop reads larger — keep it tucked */
+    right: -24px;
+  }
+  .fbModules {
+    left: 24px;
+    bottom: 44px;
+    font-size: 10px;
+  }
+}

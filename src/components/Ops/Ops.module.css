@@ -1,0 +1,1623 @@
+.ops {
+  padding: 112px 64px;
+  border-top: 1px solid var(--line-10);
+  background: var(--surface-alt);
+}
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+.title {
+  font-weight: 850;
+  font-size: 62px;
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px 44px;
+}
+/* min-width: 0, or the nowrap ticker rows inflate the page on phones */
+.card {
+  min-width: 0;
+}
+
+/* ---------------- shared caption ---------------- */
+.caption {
+  margin-top: 20px;
+}
+.capMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.kind {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  border: 1px solid rgba(154, 90, 62, 0.4);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+.capNum {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe-3);
+}
+.capTitle {
+  font-weight: 850;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  margin: 12px 0 0;
+}
+.capDesc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--brown-2);
+  margin: 8px 0 0;
+  max-width: 560px;
+}
+.capTags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.capTag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  border: 1px solid var(--line-16);
+  border-radius: 999px;
+  padding: 5px 11px;
+}
+
+/* ---------------- shared media bits (module-scoped copies) ---------------- */
+.media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #14110c;
+}
+.liveChip {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: rgba(26, 23, 18, 0.72);
+  border-radius: 999px;
+  padding: 6px 11px;
+  pointer-events: none;
+}
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--peach);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .liveDot {
+    animation: ar-blink 1.6s infinite;
+  }
+}
+
+/* ================ OP-01 · FMLS scan pass ================ */
+.scanStage {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1400 / 1000; /* must match the captured screenshot */
+}
+.scanShot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* full-stage element; the visible line is painted at its bottom edge, so a
+   translateY of its own height sweeps the parent transform-only */
+.scanLine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0 62%,
+    rgba(154, 90, 62, 0.09) 86%,
+    rgba(154, 90, 62, 0.26) calc(100% - 3px),
+    var(--terracotta) calc(100% - 3px) 100%
+  );
+  transform: translateY(-100%);
+  opacity: 0; /* static state: finished scan, no line */
+}
+.exBox {
+  position: absolute;
+  border: 1px dashed var(--terracotta);
+  border-radius: 4px;
+  pointer-events: none;
+}
+.exBox b {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  transform: translateY(-100%);
+  border-radius: 3px 3px 3px 0;
+}
+/* the first box hugs the stage's top edge; its label hangs BELOW instead so
+   the overflow clip never cuts it */
+.exB1 b {
+  top: 100%;
+  transform: none;
+  border-radius: 0 0 3px 3px;
+}
+.exBox b {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--terracotta);
+  border-radius: 3px 3px 3px 0;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+.ticker {
+  margin-top: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.tickerTrack {
+  display: inline-flex;
+  gap: 28px;
+  width: max-content;
+}
+.tickRow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--taupe);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scanLine {
+    animation: fm-scan 7s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  .exB1 {
+    animation: fm-b1 7s linear infinite;
+  }
+  .exB2 {
+    animation: fm-b2 7s linear infinite;
+  }
+  .exB3 {
+    animation: fm-b3 7s linear infinite;
+  }
+  .tickerTrack {
+    animation: fm-tick 18s linear infinite;
+  }
+}
+/* the line re-teleports to the top during its 90-100% dark window: seamless */
+@keyframes fm-scan {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  3% {
+    opacity: 1;
+  }
+  84% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  90%,
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+/* boxes pop as the line crosses their region; all fade in the shared dark
+   window so the loop reset never shows */
+@keyframes fm-b1 {
+  0%,
+  4% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  8% {
+    opacity: 1;
+    transform: none;
+  }
+  88% {
+    opacity: 1;
+  }
+  94%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fm-b2 {
+  0%,
+  34% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  38% {
+    opacity: 1;
+    transform: none;
+  }
+  88% {
+    opacity: 1;
+  }
+  94%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fm-b3 {
+  0%,
+  66% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  70% {
+    opacity: 1;
+    transform: none;
+  }
+  88% {
+    opacity: 1;
+  }
+  94%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fm-tick {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ================ OP-02 · SeniorLife disclaimer ================ */
+.disclaimer {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  border: 1px dashed rgba(154, 90, 62, 0.45);
+  border-radius: 999px;
+  padding: 7px 14px;
+}
+.disclaimer i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--terracotta);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .disclaimer i {
+    animation: ar-blink 1.6s infinite;
+  }
+}
+
+/* ================ OP-03 · Mindbody → GHL sync ================ */
+.syncStage {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  padding: 46px 26px 38px;
+  background:
+    repeating-linear-gradient(to right, var(--line-04) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(to bottom, var(--line-04) 0 1px, transparent 1px 48px),
+    var(--surface-tile);
+}
+.syncRow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+}
+.nodeChip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--surface-card);
+  border: 1px solid var(--line-16);
+  font-weight: 850;
+  font-size: 19px;
+  box-shadow: var(--tile-shadow);
+}
+.nodeName {
+  font-weight: 650;
+  font-size: 13.5px;
+}
+.nodeSub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe-2);
+}
+.lane {
+  position: relative;
+  flex: 1;
+  height: 42px;
+}
+.laneSvg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 10px;
+  width: 100%;
+  transform: translateY(-50%);
+  overflow: visible;
+}
+.syncWire {
+  fill: none;
+  stroke: rgba(26, 23, 18, 0.3);
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+}
+.syncFlow {
+  fill: none;
+  stroke: var(--terracotta);
+  stroke-width: 1.6;
+  stroke-dasharray: 0.035 0.12;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+}
+/* payload chips ride full-lane tracks; translateX(%) of the TRACK equals the
+   lane width, so travel is width-independent and transform-only */
+.pTrack {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+.payload {
+  width: 76px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--terracotta);
+  background: var(--surface-card);
+  border: 1px solid rgba(154, 90, 62, 0.4);
+  border-radius: 999px;
+  padding: 4px 0;
+}
+/* static/reduced default: the finished diagram, chips parked along the wire */
+.p1 {
+  transform: translateX(calc((100% - 76px) * 0.18));
+}
+.p2 {
+  transform: translateX(calc((100% - 76px) * 0.5));
+}
+.p3 {
+  transform: translateX(calc((100% - 76px) * 0.82));
+}
+.ping {
+  position: absolute;
+  inset: -1px;
+  border: 1.5px solid var(--terracotta);
+  border-radius: 12px;
+  opacity: 0;
+}
+.arriveTick {
+  position: absolute;
+  right: -7px;
+  top: -7px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-size: 9px;
+  color: var(--paper);
+  background: var(--terracotta);
+  border-radius: 50%;
+}
+.syncStat {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  text-align: center;
+}
+.syncCount {
+  color: var(--terracotta);
+  margin-left: 6px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .syncWire {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  :global(.on) .syncWire {
+    animation: ops-wire-draw 0.8s cubic-bezier(0.65, 0, 0.25, 1) 0.5s forwards;
+  }
+  :global(.on) .syncFlow {
+    animation:
+      ops-flow-fade 0.5s ease 1.4s forwards,
+      ops-flow-move 2.8s linear 1.4s infinite;
+  }
+  .p1 {
+    animation: sy-p1 9s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+  .p2 {
+    animation: sy-p2 9s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+  .p3 {
+    animation: sy-p3 9s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+  .ping {
+    animation: sy-ping 9s ease-out infinite;
+  }
+  .arriveTick {
+    animation: sy-tick 9s steps(1) infinite;
+  }
+}
+@keyframes ops-wire-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes ops-flow-fade {
+  to {
+    opacity: 0.8;
+  }
+}
+@keyframes ops-flow-move {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -1;
+  }
+}
+/* three staggered travel windows; the reset (100%→0%) happens while every
+   payload is dark, so the loop seam shows only nodes + wire */
+@keyframes sy-p1 {
+  0%,
+  2% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  26% {
+    transform: translateX(calc(100% - 76px));
+    opacity: 1;
+  }
+  29%,
+  100% {
+    transform: translateX(calc(100% - 76px));
+    opacity: 0;
+  }
+}
+@keyframes sy-p2 {
+  0%,
+  35% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  38% {
+    opacity: 1;
+  }
+  59% {
+    transform: translateX(calc(100% - 76px));
+    opacity: 1;
+  }
+  62%,
+  100% {
+    transform: translateX(calc(100% - 76px));
+    opacity: 0;
+  }
+}
+@keyframes sy-p3 {
+  0%,
+  68% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  71% {
+    opacity: 1;
+  }
+  92% {
+    transform: translateX(calc(100% - 76px));
+    opacity: 1;
+  }
+  95%,
+  100% {
+    transform: translateX(calc(100% - 76px));
+    opacity: 0;
+  }
+}
+@keyframes sy-ping {
+  0%,
+  25% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  26% {
+    transform: scale(0.4);
+    opacity: 0.9;
+  }
+  32% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+  33%,
+  58% {
+    opacity: 0;
+  }
+  59% {
+    transform: scale(0.4);
+    opacity: 0.9;
+  }
+  65% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+  66%,
+  91% {
+    opacity: 0;
+  }
+  92% {
+    transform: scale(0.4);
+    opacity: 0.9;
+  }
+  98%,
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+@keyframes sy-tick {
+  0%,
+  25% {
+    opacity: 0;
+  }
+  26%,
+  33% {
+    opacity: 1;
+  }
+  34%,
+  58% {
+    opacity: 0;
+  }
+  59%,
+  66% {
+    opacity: 1;
+  }
+  67%,
+  91% {
+    opacity: 0;
+  }
+  92%,
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ================ OP-04 · FB Group extension ================ */
+/* COORDINATE SYSTEM (change row skin → retune these):
+   stage: relative, 340px tall, 18px padding
+   clip window: inset 52px 18px 18px (shows exactly 3 rows)
+   row: 78px tall + 8px gap → 86px pitch, buttons right-anchored
+   "Send to GHL" button center ≈ right: 76px, top: 40px inside row 1
+   cursor home: right: 30px, bottom: 26px of the clip
+     → waypoint to button: translate(-46px, -222px) from home
+   payload spawn: at the button; GHL node ≈ right: 42px, top: -34px above clip
+     → flight: translate(34px, -218px) */
+.fbStage {
+  position: relative;
+  height: 340px;
+  padding: 18px;
+  background:
+    repeating-linear-gradient(to right, var(--line-04) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(to bottom, var(--line-04) 0 1px, transparent 1px 48px),
+    var(--surface-tile);
+}
+.fbNode {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.fbNodeChip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--surface-card);
+  border: 1px solid var(--line-16);
+  font-weight: 850;
+  font-size: 12px;
+  color: var(--ink);
+}
+.fbNodeTick {
+  font-style: normal;
+  font-size: 11px;
+  color: var(--terracotta);
+}
+.fbClip {
+  position: absolute;
+  inset: 52px 18px 18px;
+  overflow: hidden;
+}
+.fbRows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.fbRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 78px;
+  flex: none;
+  padding: 0 16px;
+  background: var(--surface-card);
+  border: 1px solid var(--line-14);
+  border-radius: 12px;
+}
+.fbAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--line-10);
+  border: 1px solid var(--line-16);
+  flex: none;
+}
+.fbLines {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.fbLines b {
+  display: block;
+  height: 9px;
+  border-radius: 4px;
+  background: var(--line-16);
+  width: 46%;
+}
+.fbLines b + b {
+  height: 7px;
+  background: var(--line-10);
+  width: 64%;
+}
+.fbApprove,
+.fbSend {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 8px 14px;
+  flex: none;
+}
+.fbApprove {
+  color: var(--ink);
+  border: 1px solid var(--line-22);
+}
+.fbSend {
+  color: var(--paper);
+  background: var(--terracotta);
+}
+.fbRipple {
+  position: absolute;
+  inset: -5px;
+  border: 1.5px solid var(--terracotta);
+  border-radius: 999px;
+  opacity: 0;
+}
+.fbPayload {
+  position: absolute;
+  right: 64px;
+  top: 74px; /* over row 1's button, in STAGE coords (outside the clip) */
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  color: var(--terracotta);
+  background: var(--surface-card);
+  border: 1px solid rgba(154, 90, 62, 0.4);
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+}
+.fbCursor {
+  position: absolute;
+  right: 30px;
+  bottom: 26px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: 0 0 0 1.5px var(--paper);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fbCursor {
+    animation: fb-cursor 10s cubic-bezier(0.3, 0, 0.2, 1) infinite;
+  }
+  .fbRowTop .fbRipple {
+    animation: fb-ripple 10s ease-out infinite;
+  }
+  .fbPayload {
+    animation: fb-payload 10s cubic-bezier(0.4, 0, 0.5, 1) infinite;
+  }
+  .fbNodeTick {
+    animation: fb-tick 10s steps(1) infinite;
+  }
+  .fbRowTop {
+    animation: fb-rowout 10s ease infinite;
+  }
+  .fbRows {
+    animation: fb-shift 10s cubic-bezier(0.65, 0, 0.25, 1) infinite;
+  }
+}
+@keyframes fb-cursor {
+  0%,
+  6% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  22% {
+    transform: translate(-70px, -180px);
+  }
+  24% {
+    transform: translate(-70px, -180px) scale(0.8);
+  }
+  27% {
+    transform: translate(-70px, -180px) scale(1);
+  }
+  40% {
+    transform: translate(-70px, -180px);
+    opacity: 1;
+  }
+  46%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+}
+@keyframes fb-ripple {
+  0%,
+  23% {
+    transform: scale(0.55);
+    opacity: 0;
+  }
+  24% {
+    transform: scale(0.55);
+    opacity: 0.85;
+  }
+  30%,
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+@keyframes fb-payload {
+  0%,
+  26% {
+    transform: translate(0, 0) scale(0.9);
+    opacity: 0;
+  }
+  29% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  44% {
+    transform: translate(12px, -56px) scale(0.85);
+    opacity: 1;
+  }
+  47%,
+  100% {
+    transform: translate(12px, -56px) scale(0.7);
+    opacity: 0;
+  }
+}
+@keyframes fb-tick {
+  0%,
+  44% {
+    opacity: 0;
+  }
+  45%,
+  78% {
+    opacity: 1;
+  }
+  79%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fb-rowout {
+  0%,
+  48% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  58% {
+    transform: translateX(26px);
+    opacity: 0;
+  }
+  99.9% {
+    transform: translateX(26px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fb-shift {
+  0%,
+  58% {
+    transform: translateY(0);
+  }
+  70%,
+  99.9% {
+    transform: translateY(-86px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ---------------- responsive ---------------- */
+@media (max-width: 860px) {
+  .ops {
+    padding: 84px 24px;
+  }
+  .title {
+    font-size: 42px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+}
+
+/* ================ OP-05 · Tilda → n8n → GHL router ================
+   Full-width featured card, drawn natively (no screenshots): paper-toned
+   Tilda form strip + the n8n topology as an ink/terracotta schematic on the
+   drafting grid. Wires reuse the OP-03 recipes (.syncWire / .syncFlow, same
+   file). One 11s loop; flashes/rings ride --pd delays and each fires once
+   per cycle, so the seam hides in the 8.6-11s quiet window. Base styles =
+   settled composition (bars filled, wires drawn via the reveal, pulses
+   resting); motion gated behind no-preference; transform/opacity only. */
+.tiCard {
+  grid-column: 1 / -1;
+}
+.tiStage {
+  position: relative;
+}
+
+/* ---- form strip ---- */
+.tiForm {
+  padding: 20px 28px 26px;
+  border-bottom: 1px solid var(--line-14);
+  background: var(--surface-card);
+}
+.tiFormKicker {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+.tiFields {
+  display: flex;
+  align-items: flex-end;
+  gap: 26px;
+  margin-top: 18px;
+}
+.tiField {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.tiFieldLabel {
+  display: block;
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe-2);
+  margin-bottom: 9px;
+}
+.tiFieldLine {
+  position: relative;
+  display: block;
+  height: 14px;
+  border-bottom: 1px solid var(--line-16);
+}
+.tiFill {
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  height: 6px;
+  width: var(--w, 70%);
+  border-radius: 3px;
+  background: rgba(26, 23, 18, 0.32);
+  transform-origin: left center;
+}
+.tiSend {
+  position: relative;
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--ink);
+  border-radius: 999px;
+  padding: 10px 24px;
+}
+.tiSendRing,
+.tiNodeRing {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border: 2px solid rgba(154, 90, 62, 0.75);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- schematic canvas ---- */
+.tiCanvasRow {
+  position: relative;
+  overflow: hidden;
+}
+.tiPanner {
+  position: relative;
+  width: 100%;
+}
+.tiCanvas {
+  position: relative;
+  aspect-ratio: 1600 / 560;
+  background:
+    repeating-linear-gradient(to right, var(--line-04) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(to bottom, var(--line-04) 0 1px, transparent 1px 48px),
+    var(--surface-tile);
+}
+.tiWires {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.tiNode {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transform: translate(-50%, -22px);
+  pointer-events: none;
+}
+.tiNodeMini {
+  transform: translate(-50%, -15px);
+}
+.tiChip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--surface-card);
+  border: 1px solid var(--line-16);
+  box-shadow: var(--tile-shadow);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+}
+.tiNodeMini .tiChip {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  font-size: 10px;
+}
+.tiChipAccent {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+  color: var(--paper);
+}
+.tiName {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brown-2);
+  white-space: nowrap;
+}
+.tiSub {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  white-space: nowrap;
+  margin-top: -2px;
+}
+.tiFlash {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(154, 90, 62, 0.22);
+  opacity: 0;
+  pointer-events: none;
+}
+.tiPill {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brown-2);
+  background: var(--surface-card);
+  border: 1px solid var(--line-16);
+  border-radius: 999px;
+  padding: 5px 10px 5px 5px;
+  box-shadow: var(--tile-shadow);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.tiPillChip {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 5px;
+  background: var(--terracotta);
+  color: var(--paper);
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 700;
+}
+.tiLeadChip {
+  position: absolute;
+  left: 5%;
+  top: 16%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  background: var(--paper);
+  border: 1px solid rgba(154, 90, 62, 0.5);
+  border-radius: 999px;
+  padding: 4px 9px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+}
+.tiGhlChip {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: rgba(26, 23, 18, 0.72);
+  border-radius: 999px;
+  padding: 6px 11px;
+  pointer-events: none;
+}
+.tiGhlChip i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--peach);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tiFill {
+    animation: ti-fill 11s linear infinite;
+    animation-delay: var(--pd, 0s);
+  }
+  .tiSendRing {
+    transform: scale(0.4);
+    animation: ti-ring 11s linear infinite;
+    animation-delay: 1.2s;
+  }
+  .tiNodeRing {
+    transform: scale(0.4);
+    animation: ti-ring 11s linear infinite;
+    animation-delay: var(--pd, 0s);
+  }
+  .tiFlash {
+    animation: ti-flash 11s linear infinite;
+    animation-delay: var(--pd, 0s);
+  }
+  .tiLeadChip {
+    animation: ti-lead 11s linear infinite;
+  }
+  .tiGhlChip {
+    opacity: 0;
+    animation: ti-ghl 11s linear infinite;
+  }
+  .tiGhlChip i {
+    animation: ar-blink 1.6s infinite;
+  }
+}
+/* fields refill each cycle; both ends of the loop rest at a stub */
+@keyframes ti-fill {
+  0% {
+    transform: scaleX(0.14);
+  }
+  6% {
+    transform: scaleX(1);
+  }
+  76% {
+    transform: scaleX(1);
+  }
+  82%,
+  100% {
+    transform: scaleX(0.14);
+  }
+}
+@keyframes ti-ring {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  2.5% {
+    opacity: 0.95;
+    transform: scale(0.85);
+  }
+  7.5% {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+@keyframes ti-flash {
+  0% {
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  8% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ti-lead {
+  0%,
+  13% {
+    opacity: 0;
+  }
+  16%,
+  24% {
+    opacity: 1;
+  }
+  30%,
+  100% {
+    opacity: 0;
+  }
+}
+/* lights up as the six pipeline posts land, rests in the dark window */
+@keyframes ti-ghl {
+  0%,
+  56% {
+    opacity: 0;
+  }
+  60%,
+  78% {
+    opacity: 1;
+  }
+  84%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 860px) {
+  .tiFields {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  .tiField {
+    flex: 1 1 40%;
+  }
+  .tiSend {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+  /* zoom the schematic and pan across; nodes + wires ride .tiPanner so
+     the geometry holds */
+  .tiCanvasRow {
+    height: calc((100vw - 48px) * 0.8225);
+  }
+  .tiPanner {
+    width: 235%;
+  }
+  .tiLeadChip {
+    display: none;
+  }
+}
+@media (max-width: 860px) and (prefers-reduced-motion: no-preference) {
+  .tiPanner {
+    animation: ti-panx 20s ease-in-out infinite alternate;
+  }
+}
+@keyframes ti-panx {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-57.5%);
+  }
+}
+
+/* ================ OP-06 / OP-07 · ARIVE ⇄ GHL (real captures) ================
+   Calm treatment (user request): the actual builder screenshots front and
+   center — sanitized derivatives in public/work/arive-ghl/web/ (client title
+   bars and real stage-name rows cropped at derivation; originals in repo-root
+   work-src/zapier-arive-ghl). Slow auto-pans inside fixed-aspect windows,
+   soft pulse rings on key nodes, blinking live dots, and the ambient sync
+   current on OP-07's corridor fan. No riding chips, no cascades. */
+
+/* ---- shared pan window bits ---- */
+.lcWin {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--surface-tile);
+}
+.lcShot {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+.lcShotOn {
+  opacity: 1;
+}
+.lcPan {
+  position: relative;
+}
+.lcPanY {
+  width: 100%;
+}
+.lcPanY img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.lcPanX {
+  height: 100%;
+  width: max-content;
+}
+.lcPanX img {
+  display: block;
+  height: 100%;
+  width: auto;
+}
+.lcPulse {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border: 2px solid rgba(154, 90, 62, 0.8);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.45);
+  pointer-events: none;
+}
+
+/* ---- OP-06 view toggle (the Callyniq segmented recipe) ---- */
+.lcSeg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+.lcSegBtn {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  background: transparent;
+  border: 1px solid var(--line-16);
+  border-radius: 999px;
+  padding: 6px 13px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.lcSegBtn:hover {
+  color: var(--ink);
+  border-color: var(--line-30);
+}
+.lcSegOn {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* ---- OP-07 · Zap window over the live stage-workflow board ---- */
+.suStage {
+  position: relative;
+}
+.suWin {
+  position: relative;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line-14);
+  background: var(--surface-tile);
+}
+.suCanvas {
+  padding: 16px 0 0;
+  background:
+    repeating-linear-gradient(to right, var(--line-04) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(to bottom, var(--line-04) 0 1px, transparent 1px 48px),
+    var(--surface-tile);
+}
+.suBoard {
+  position: relative;
+  padding: 0 18px 0 84px;
+}
+.suWires {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 462px;
+}
+.suRows {
+  position: relative;
+  padding-top: 5px;
+}
+.suRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 56px;
+  margin-bottom: 10px;
+  padding: 0 14px;
+  background: var(--surface-card);
+  border: 1px solid var(--line-16);
+  border-radius: 12px;
+  box-shadow: var(--tile-shadow);
+}
+.suRow:last-child {
+  margin-bottom: 0;
+}
+.suRowChip {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: var(--terracotta);
+  color: var(--paper);
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+}
+.suName {
+  font-weight: 650;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.suLeader {
+  flex: 1;
+  min-width: 12px;
+  height: 0;
+  border-bottom: 1px dashed var(--line-16);
+}
+.suCount {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--terracotta);
+}
+.suLive {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  border: 1px solid var(--line-16);
+  border-radius: 999px;
+  padding: 3px 8px;
+}
+.suLive i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--peach);
+}
+.suFoot {
+  padding: 16px 12px 18px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  text-align: center;
+}
+.suFoot b {
+  font-weight: 700;
+  color: var(--terracotta);
+}
+.suFoot i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--peach);
+  margin-left: 7px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lcPanY {
+    animation: lc-pan-y 30s ease-in-out infinite alternate;
+  }
+  .lcPanX {
+    animation: lc-pan-x 32s ease-in-out infinite alternate;
+  }
+  .lcPulse {
+    animation: lc-pulse 6s ease-out infinite;
+    animation-delay: var(--pd, 0s);
+  }
+  .suLive i,
+  .suFoot i {
+    animation: ar-blink 1.6s infinite;
+  }
+}
+@keyframes lc-pan-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(var(--pan, -20%));
+  }
+}
+@keyframes lc-pan-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(var(--pan, -30%));
+  }
+}
+@keyframes lc-pulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.45);
+  }
+  6% {
+    opacity: 0.9;
+  }
+  18% {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.45);
+  }
+}
+
+@media (max-width: 860px) {
+  .suName {
+    font-size: 12px;
+  }
+  .suBoard {
+    padding-left: 44px;
+  }
+}

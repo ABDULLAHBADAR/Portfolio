@@ -1,0 +1,621 @@
+.work {
+  padding: 112px 64px 40px;
+  border-top: 1px solid var(--line-10);
+}
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+.title {
+  font-weight: 850;
+  font-size: 62px;
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+
+/* ---------------- case layout ---------------- */
+.case {
+  display: grid;
+  grid-template-columns: 0.42fr 0.58fr;
+  gap: 64px;
+  align-items: center;
+  padding: 72px 0;
+  border-top: 1px solid var(--line-10);
+}
+/* media on the left, copy on the right */
+.caseFlip .info {
+  order: 2;
+}
+.caseFlip .stage {
+  order: 1;
+}
+
+/* min-width: 0 — grid items default to min-width:auto, so the terminal's
+   nowrap log lines would otherwise force the whole page wider than the
+   viewport on phones */
+.info,
+.stage {
+  min-width: 0;
+}
+.info {
+  max-width: 520px;
+}
+.caseNum {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--terracotta);
+}
+.caseTitle {
+  font-weight: 850;
+  font-size: 46px;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 14px 0 0;
+}
+.caseTagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--terracotta);
+  margin-top: 10px;
+}
+.caseDesc {
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--brown-2);
+  margin: 18px 0 0;
+}
+.feats {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+}
+.feat {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  font-size: 14.5px;
+  color: var(--ink-2);
+  padding: 7px 0;
+}
+.featTick {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--terracotta);
+}
+.caseFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tagChip {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  border: 1px solid var(--line-16);
+  border-radius: 999px;
+  padding: 6px 12px;
+}
+.visit {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--line-30);
+  padding-bottom: 3px;
+}
+.visit:hover {
+  color: var(--terracotta);
+  border-color: var(--terracotta);
+}
+.visitArrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.visit:hover .visitArrow {
+  transform: translate(3px, -3px);
+}
+
+/* ---------------- media stage + browser frame ---------------- */
+.stage {
+  position: relative;
+}
+.stageMain {
+  position: relative;
+  z-index: 2;
+}
+.frame {
+  margin: 0;
+  border: 1px solid var(--line-16);
+  border-radius: 14px;
+  background: var(--surface-card);
+  box-shadow: 0 24px 60px -28px rgba(26, 23, 18, 0.35);
+  overflow: hidden;
+}
+.frameBar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--line-10);
+}
+.frameDots {
+  display: flex;
+  gap: 6px;
+}
+.frameDots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--line-22);
+}
+.frameLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--taupe);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.frameBody {
+  position: relative;
+}
+.frameDark {
+  background: #201c16;
+  border-color: rgba(244, 239, 228, 0.14);
+}
+.frameDark .frameBar {
+  border-bottom-color: rgba(244, 239, 228, 0.1);
+}
+.frameDark .frameDots i {
+  background: rgba(244, 239, 228, 0.22);
+}
+.frameDark .frameLabel {
+  color: var(--card-sub);
+}
+
+.media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #14110c;
+}
+.liveChip {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: rgba(26, 23, 18, 0.72);
+  border-radius: 999px;
+  padding: 6px 11px;
+  pointer-events: none;
+}
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--peach);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .liveDot {
+    animation: ar-blink 1.6s infinite;
+  }
+}
+
+/* ---------------- Subdesk: parallax exhibits ---------------- */
+.exhibit {
+  position: absolute;
+  z-index: 1;
+  width: 44%;
+  border: 1px solid var(--line-16);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface-card);
+  box-shadow: var(--pcard-shadow);
+}
+.exhibit img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.exhibitTag {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: rgba(26, 23, 18, 0.7);
+  border-radius: 999px;
+  padding: 5px 10px;
+}
+.exhibitBack {
+  top: -44px;
+  right: -18px;
+  rotate: 1.6deg;
+}
+.exhibitFront {
+  bottom: -52px;
+  left: -26px;
+  z-index: 3;
+  rotate: -1.8deg;
+}
+/* doubled class beats the global `.rv.on { transform: none }` so the live
+   parallax transform survives after the entrance finishes */
+@media (prefers-reduced-motion: no-preference) {
+  .exhibit.exhibitBack {
+    transform: translateY(calc((var(--prog, 0.5) - 0.5) * -36px));
+  }
+  .exhibit.exhibitFront {
+    transform: translateY(calc((var(--prog, 0.5) - 0.5) * 46px));
+  }
+}
+
+/* ---------------- Callyniq: crossfade stack + segmented control ------- */
+.mediaStack {
+  position: relative;
+  aspect-ratio: 16 / 9;
+}
+.mediaLayer {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.mediaOn {
+  opacity: 1;
+}
+.segmented {
+  position: absolute;
+  right: 14px;
+  top: 9px;
+  display: flex;
+  gap: 4px;
+  z-index: 4;
+}
+.segBtn {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  background: transparent;
+  border: 1px solid var(--line-16);
+  border-radius: 999px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.segBtn:hover {
+  color: var(--ink);
+  border-color: var(--line-30);
+}
+.segOn {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* voice waveform beside the Callyniq copy */
+.wave {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 26px;
+  margin-top: 16px;
+}
+.wave i {
+  width: 3px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--terracotta);
+}
+.waveLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe-2);
+  margin-left: 10px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .wave i {
+    animation: wave-bar 1.15s ease-in-out calc(var(--wi) * 0.12s) infinite;
+  }
+}
+@keyframes wave-bar {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(2.6);
+  }
+}
+
+/* ---------------- CodesWave: self-drawing wireframe ---------------- */
+.cwSvg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 800 / 470;
+  color: rgba(26, 23, 18, 0.55);
+  background:
+    repeating-linear-gradient(to right, var(--line-04) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(to bottom, var(--line-04) 0 1px, transparent 1px 48px),
+    var(--surface-tile);
+}
+.cwAccent {
+  color: var(--terracotta);
+}
+.cw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+/* four passes drawing across one shared 11s loop; a synchronized fade masks
+   the reset. Under reduced motion: no animation — finished wireframe. */
+@media (prefers-reduced-motion: no-preference) {
+  .cw1 {
+    animation: cw-p1 11s linear infinite;
+  }
+  .cw2 {
+    animation: cw-p2 11s linear infinite;
+  }
+  .cw3 {
+    animation: cw-p3 11s linear infinite;
+  }
+  .cw4 {
+    animation: cw-p4 11s linear infinite;
+  }
+}
+@keyframes cw-p1 {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+  14% {
+    stroke-dashoffset: 0;
+  }
+  92% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  97%,
+  100% {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+}
+@keyframes cw-p2 {
+  0%,
+  12% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+  34% {
+    stroke-dashoffset: 0;
+  }
+  92% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  97%,
+  100% {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+}
+@keyframes cw-p3 {
+  0%,
+  32% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+  56% {
+    stroke-dashoffset: 0;
+  }
+  92% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  97%,
+  100% {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+}
+@keyframes cw-p4 {
+  0%,
+  54% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+  70% {
+    stroke-dashoffset: 0;
+  }
+  92% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  97%,
+  100% {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+}
+
+/* ---------------- Puppeteer: terminal stream ---------------- */
+.term {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  padding: 18px 22px 46px;
+  font-family: var(--font-mono);
+  color: rgba(244, 239, 228, 0.8);
+  display: flex;
+  flex-direction: column;
+}
+.termStat {
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--card-sub);
+  margin-bottom: 12px;
+}
+.termCount {
+  color: var(--peach);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  margin-left: 8px;
+}
+.termViewport {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 10%,
+    #000 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 10%,
+    #000 88%,
+    transparent 100%
+  );
+}
+@media (prefers-reduced-motion: no-preference) {
+  .termScroll {
+    animation: term-scroll 14s linear infinite;
+  }
+}
+@keyframes term-scroll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+.termLine {
+  display: flex;
+  gap: 14px;
+  font-size: 11.5px;
+  line-height: 2.1;
+  white-space: nowrap;
+}
+.termVerb {
+  color: var(--peach);
+  width: 58px;
+  flex: none;
+}
+.termPath {
+  color: rgba(244, 239, 228, 0.85);
+  flex: none;
+}
+.termMeta {
+  color: rgba(244, 239, 228, 0.38);
+  flex: none;
+}
+.termOk {
+  color: #9fbf8f;
+  margin-left: auto;
+}
+.termPrompt {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 14px;
+  font-size: 11.5px;
+  color: rgba(244, 239, 228, 0.65);
+  border-top: 1px solid rgba(244, 239, 228, 0.1);
+  padding-top: 10px;
+}
+.caret {
+  color: var(--peach);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .caret {
+    animation: ar-blink 1.1s steps(1) infinite;
+  }
+}
+
+/* ---------------- responsive ---------------- */
+@media (max-width: 1100px) {
+  .case {
+    gap: 40px;
+  }
+  .caseTitle {
+    font-size: 38px;
+  }
+}
+@media (max-width: 860px) {
+  .work {
+    padding: 84px 24px 24px;
+  }
+  .title {
+    font-size: 42px;
+  }
+  .case {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    padding: 56px 0;
+  }
+  /* copy first, media second on mobile regardless of flip */
+  .caseFlip .info,
+  .info {
+    order: 1;
+    max-width: none;
+  }
+  .caseFlip .stage,
+  .stage {
+    order: 2;
+  }
+  /* exhibits become inline cards under the video instead of overlaps */
+  .exhibit {
+    position: static;
+    width: 100%;
+    rotate: none;
+    margin-top: 14px;
+  }
+  .exhibitBack {
+    display: none;
+  }
+}

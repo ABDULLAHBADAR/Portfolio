@@ -1,0 +1,109 @@
+.services {
+  padding: 112px 64px;
+  border-top: 1px solid var(--line-10);
+}
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+.title {
+  font-weight: 850;
+  font-size: 62px;
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.card {
+  padding: 34px;
+  border: 1px solid var(--line-14);
+  border-radius: 18px;
+  background: var(--surface-card);
+}
+.num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--terracotta);
+}
+.cardTitle {
+  font-weight: 820;
+  font-size: 27px;
+  letter-spacing: -0.02em;
+  margin-top: 12px;
+}
+.desc {
+  font-size: 16px;
+  color: var(--brown-2);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+.tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--taupe-2);
+  margin-top: 18px;
+}
+
+/* ---------- hover: lift + drawing top rule ---------- */
+.card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 0.61, 0.21, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--terracotta);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.25, 1);
+}
+/* doubled class so the lift survives the global .rv.on transform reset */
+.card.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px -22px rgba(26, 23, 18, 0.35);
+  border-color: var(--line-30);
+}
+.card:hover::before {
+  transform: scaleX(1);
+}
+.num {
+  transition: letter-spacing 0.35s ease;
+}
+.card:hover .num {
+  letter-spacing: 0.22em;
+}
+
+@media (max-width: 860px) {
+  .services {
+    padding: 84px 24px;
+  }
+  .title {
+    font-size: 42px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,10 @@
+.top {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+/* All post-hero sections live in a centered 1280px column (matches the original). */
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+}

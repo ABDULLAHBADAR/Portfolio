@@ -1,0 +1,61 @@
+/* Design tokens — every distinct value from the original design export.
+   Kept as CSS variables so components reference them by role, not by raw hex. */
+:root {
+  /* Core palette */
+  --paper: #f4efe4;        /* page/hero background, inverse text on dark */
+  --ink: #1a1712;          /* primary near-black ink & dark surfaces */
+  --terracotta: #9a5a3e;   /* accent: eyebrows, indices, emphasis */
+  --peach: #e0a07f;        /* dark-section accent: "works", focus, hovers */
+
+  /* Body text browns */
+  --ink-2: #2a251e;        /* About large paragraph */
+  --brown: #4a433a;        /* hero paragraph */
+  --brown-2: #5c544a;      /* work/experience/services descriptions */
+
+  /* Taupes / muted labels */
+  --taupe: #6f685c;        /* stat sublabels, group labels, tags */
+  --taupe-2: #8a8275;      /* services tech tags */
+  --taupe-3: #9a8e7c;      /* bullets, footer text, placeholder note */
+  --card-sub: #c9a38c;     /* card sublabels & contact social/thanks */
+
+  /* Surfaces */
+  --reveal-bg: #ece3d2;    /* hero reveal ("under the hood") panel */
+  --surface-alt: #efe8db;  /* stack/experience bg + work-row hover */
+  --surface-card: #f6f0e3; /* stack chips + service cards */
+  --surface-tile: #fbf7ee; /* hero floating icon tiles */
+  --footer-bg: #13110d;    /* footer bar */
+
+  /* Hairlines / borders on light (ink alpha) */
+  --line-30: rgba(26, 23, 18, 0.3);
+  --line-32: rgba(26, 23, 18, 0.32);
+  --line-22: rgba(26, 23, 18, 0.22);
+  --line-16: rgba(26, 23, 18, 0.16);
+  --line-14: rgba(26, 23, 18, 0.14);
+  --line-12: rgba(26, 23, 18, 0.12);
+  --line-10: rgba(26, 23, 18, 0.1);
+  --line-06: rgba(26, 23, 18, 0.06);
+  --line-05: rgba(26, 23, 18, 0.05);
+  --line-04: rgba(26, 23, 18, 0.04);
+
+  /* Lines on dark (paper alpha) */
+  --dline-40: rgba(244, 239, 228, 0.4);
+  --dline-28: rgba(244, 239, 228, 0.28);
+  --dline-22: rgba(244, 239, 228, 0.22);
+  --dline-08: rgba(244, 239, 228, 0.08);
+
+  /* Thanks panel (peach alpha) */
+  --peach-40: rgba(224, 160, 127, 0.4);
+  --peach-08: rgba(224, 160, 127, 0.08);
+
+  /* Shadows */
+  --tile-shadow: 0 16px 36px -8px rgba(26, 23, 18, 0.28);
+  --pcard-shadow: 0 18px 38px -10px rgba(26, 23, 18, 0.4);
+
+  /* Scan reveal */
+  --scan-border: rgba(26, 23, 18, 0.45); /* scanner frame hairline */
+
+  /* Fonts */
+  --font-sans: 'Archivo', sans-serif;
+  --font-serif: 'Instrument Serif', serif;
+  --font-mono: 'Space Mono', monospace;
+}
