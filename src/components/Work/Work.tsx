@@ -15,7 +15,7 @@ export default function Work() {
     <section id="work" className={styles.work}>
       <div ref={rv} className={`${styles.header} rv`}>
         <h2 className={styles.title}>Selected work</h2>
-        <div className={styles.label}>(03) · Work</div>
+        <div className={styles.label}>(04) · Work</div>
       </div>
       <SubdeskCase />
       <CallyniqCase />

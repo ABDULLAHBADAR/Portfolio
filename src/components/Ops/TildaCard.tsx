@@ -6,7 +6,7 @@ import OpsCaption from './OpsCaption'
 import styles from './Ops.module.css'
 
 /**
- * OP-05: the Tilda → n8n → GHL router, full-width under the 2×2 grid. Drawn
+ * OP-01: the Tilda → n8n → GHL router, full-width at the head of the grid. Drawn
  * natively in the site's drafting language (no screenshots: the originals in
  * work-src/n8n read too small and too cool-toned for the paper theme). Two
  * rows in one frame: a paper-toned Tilda form strip and the n8n topology as
@@ -15,7 +15,7 @@ import styles from './Ops.module.css'
  * the spine, the eight source-form branches cascade, everything converges on
  * the GHL POST, the pipeline switch fans out and the ghl chip lights up.
  *
- * Wires reuse the OP-03 sync recipes (.syncWire draw / .syncFlow current,
+ * Wires reuse the OP-04 sync recipes (.syncWire draw / .syncFlow current,
  * same module file); node flashes and rings ride --pd delays on the shared
  * cycle. Geometry lives in % / a 1600×560 viewBox: nodes are HTML (crisp
  * text), wires are SVG with non-scaling strokes.
@@ -193,7 +193,7 @@ export default function TildaCard() {
           </Frame>
         </div>
       </div>
-      <OpsCaption c={OPS[4]} d={0.12} />
+      <OpsCaption c={OPS[0]} d={0.12} />
     </article>
   )
 }

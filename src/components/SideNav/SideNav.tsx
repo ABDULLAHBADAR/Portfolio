@@ -8,7 +8,7 @@ import styles from './SideNav.module.css'
  * open. Hidden while the hero is on screen (the hero stays chrome-free) and
  * on phones. Clicking glides to the section; reduced motion jumps.
  *
- * Indices mirror the on-page section labels ((01) About … (09) Contact);
+ * Indices mirror the on-page section labels ((01) About … (10) Contact);
  * `child` rows are specific pieces of work worth direct access.
  */
 
@@ -21,16 +21,17 @@ interface NavItem {
 
 const ITEMS: NavItem[] = [
   { id: 'about', num: '01', label: 'about' },
-  { id: 'stack', num: '02', label: 'toolkit' },
-  { id: 'work', num: '03', label: 'products' },
-  { id: 'builds', num: '04', label: 'site rebuilds' },
-  { id: 'ops', num: '05', label: 'scrapers · ops' },
+  { id: 'agency', num: '02', label: 'agency case study' },
+  { id: 'stack', num: '03', label: 'toolkit' },
+  { id: 'work', num: '04', label: 'products' },
+  { id: 'pipeline', num: '05', label: 'make · servicetitan' },
+  { id: 'ops', num: '06', label: 'ghl integrations' },
   { id: 'ops-tilda-n8n-ghl', label: 'n8n · tilda', child: true },
   { id: 'ops-arive-ghl-intake', label: 'zapier · arive', child: true },
-  { id: 'pipeline', num: '06', label: 'make · servicetitan' },
   { id: 'experience', num: '07', label: 'experience' },
   { id: 'services', num: '08', label: 'services' },
-  { id: 'contact', num: '09', label: 'contact' },
+  { id: 'builds', num: '09', label: 'site rebuilds' },
+  { id: 'contact', num: '10', label: 'contact' },
 ]
 
 export default function SideNav() {

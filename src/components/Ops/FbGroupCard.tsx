@@ -5,7 +5,7 @@ import OpsCaption from './OpsCaption'
 import styles from './Ops.module.css'
 
 /**
- * OP-04: the extension demonstrating itself, no JS. A schematic member-
+ * OP-05: the extension demonstrating itself, no JS. A schematic member-
  * request queue (deliberately paper-toned, no Facebook branding): a cursor
  * glides to the injected "Send to GHL" button, clicks, the payload flies to
  * the GHL node, the handled row leaves and the queue advances. One 10s CSS
@@ -56,7 +56,7 @@ export default function FbGroupCard() {
           </Frame>
         </div>
       </div>
-      <OpsCaption c={OPS[3]} d={0.12} />
+      <OpsCaption c={OPS[4]} d={0.12} />
     </article>
   )
 }

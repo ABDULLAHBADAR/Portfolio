@@ -83,7 +83,7 @@ export default function Stack() {
     <section id="stack" className={styles.stack}>
       <div ref={rv} className={`${styles.header} rv`}>
         <h2 className={styles.title}>The toolkit</h2>
-        <div className={styles.label}>(02) · Stack</div>
+        <div className={styles.label}>(03) · Stack</div>
       </div>
       <div
         ref={(el) => {

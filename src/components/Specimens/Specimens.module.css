@@ -1,4 +1,4 @@
-/* ================ (04) · Builds ================
+/* ================ (09) · Builds ================
    Index rail + live specimen stage. The stage renders each preview at its
    own desktop width (1440px) and scales it down through --scale, which the
    component keeps in step with the stage's measured width. */

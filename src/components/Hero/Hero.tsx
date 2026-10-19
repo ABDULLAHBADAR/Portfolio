@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { CONTACT_LINKS } from '../../data/content'
 import { CUTOUT_SRC, useScanReveal } from '../../hooks/useScanReveal'
 import styles from './Hero.module.css'
 
@@ -78,6 +79,15 @@ const BG_BLOBS: CSSProperties[] = [
   },
 ]
 
+/* top-of-page call to action: a booking link if there is one, else email,
+   else the contact form */
+const CTA = CONTACT_LINKS.booking
+  ? { href: CONTACT_LINKS.booking, label: 'Book a call →', external: true }
+  : CONTACT_LINKS.email
+    ? { href: `mailto:${CONTACT_LINKS.email}`, label: 'Email me →', external: false }
+    : { href: '#contact', label: 'Get in touch →', external: false }
+const ctaTarget = CTA.external ? { target: '_blank', rel: 'noopener noreferrer' } : {}
+
 export default function Hero() {
   const {
     heroRef,
@@ -111,18 +121,18 @@ export default function Hero() {
       <div className={styles.wordmark}>
         <span className={styles.wordmarkChip}>A</span>Abdullah
       </div>
-      <a href="#contact" className={styles.navPill}>
-        Let&apos;s talk →
+      <a href={CTA.href} {...ctaTarget} className={styles.navPill}>
+        {CTA.label}
       </a>
 
       {/* default content — data-bp marks what the blueprint redraws in place */}
       <div className={styles.contentGrid}>
         <div>
           <div className={styles.role} data-bp="role">
-            AI &amp; Automation Expert
+            GoHighLevel &amp; Automation Expert
           </div>
           <div className={styles.eyebrow} data-bp="eyebrow">
-            Automation · GHL · n8n · Make · 4+ years
+            GoHighLevel · n8n · Make · Zapier · 4+ years
           </div>
           <div className={styles.eyebrow} data-bp="eyebrow">
             Full-stack developer · 6+ years
@@ -134,16 +144,16 @@ export default function Hero() {
             Abdullah
           </h1>
           <p className={styles.lead} data-bp="lead">
-            I build full-stack web products, and the{' '}
-            <span className={styles.leadItalic}>automation</span> that quietly runs
-            them.
+            I fix and scale{' '}
+            <span className={styles.leadItalic}>GoHighLevel</span> setups for
+            agencies running dozens of sub-accounts.
           </p>
           <div className={styles.btnRow} data-bp="btnRow">
-            <a href="#work" className={styles.btnPrimary}>
-              View work ↘
+            <a href={CTA.href} {...ctaTarget} className={styles.btnPrimary}>
+              {CTA.label}
             </a>
-            <a href="#contact" className={styles.btnSecondary}>
-              Get in touch
+            <a href="#agency" className={styles.btnSecondary}>
+              View work ↘
             </a>
           </div>
         </div>
@@ -172,27 +182,27 @@ export default function Hero() {
         <div className={styles.revealLabel}>// under the hood</div>
         <div className={`${styles.contentGrid} ${styles.fbText}`}>
           <div>
-            <div className={styles.role}>AI &amp; Automation Expert</div>
-            <div className={styles.eyebrow}>Automation · GHL · n8n · Make · 4+ years</div>
+            <div className={styles.role}>GoHighLevel &amp; Automation Expert</div>
+            <div className={styles.eyebrow}>GoHighLevel · n8n · Make · Zapier · 4+ years</div>
             <div className={styles.eyebrow}>Full-stack developer · 6+ years</div>
             <div className={styles.serifSub}>building since 2020</div>
             <h1 className={styles.title}>
               Abdullah
             </h1>
             <p className={styles.lead}>
-              I build full-stack web products, and the{' '}
-              <span className={styles.leadItalic}>automation</span> that quietly
-              runs them.
+              I fix and scale{' '}
+              <span className={styles.leadItalic}>GoHighLevel</span> setups for
+              agencies running dozens of sub-accounts.
             </p>
             <div className={styles.btnRow}>
-              <span className={styles.btnPrimary}>View work ↘</span>
-              <span className={styles.btnSecondary}>Get in touch</span>
+              <span className={styles.btnPrimary}>{CTA.label}</span>
+              <span className={styles.btnSecondary}>View work ↘</span>
             </div>
           </div>
           <div />
         </div>
         <div className={styles.fbModules}>
-          modules: [ subdesk ] [ callyniq ] [ codeswave ]
+          modules: [ ghl ] [ subdesk ] [ callyniq ] [ codeswave ]
         </div>
       </div>
 

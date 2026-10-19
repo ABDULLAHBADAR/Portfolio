@@ -15,7 +15,7 @@ const ROWS = [
 ]
 
 /**
- * OP-01: the scrape, performed. A terracotta scan line sweeps the FMLS
+ * OP-06: the scrape, performed. A terracotta scan line sweeps the FMLS
  * homepage; dashed extraction boxes flash as it passes their region; the
  * ticker under the frame streams the rows it "lifted". One shared 7s loop,
  * reset masked while everything is dark.
@@ -72,7 +72,7 @@ export default function FmlsCard() {
           </div>
         </div>
       </div>
-      <OpsCaption c={OPS[0]} d={0.12} />
+      <OpsCaption c={OPS[5]} d={0.12} />
     </article>
   )
 }

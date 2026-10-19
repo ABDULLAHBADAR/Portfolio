@@ -30,6 +30,45 @@
   font-weight: 400;
   color: var(--peach);
 }
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 34px;
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper);
+  text-decoration: none;
+  border: 1px solid var(--dline-28);
+  border-radius: 999px;
+  padding: 11px 18px;
+}
+.link:hover {
+  border-color: var(--peach);
+  color: var(--peach);
+}
+.linkPlain {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+.badge {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  background: var(--peach);
+  border-radius: 999px;
+  padding: 3px 8px;
+}
+.linkArrow {
+  color: var(--card-sub);
+}
 .form {
   display: flex;
   flex-direction: column;

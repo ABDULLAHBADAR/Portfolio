@@ -33,6 +33,10 @@
   border-radius: 18px;
   background: var(--surface-card);
 }
+/* lead service spans the row: the featured offer, and five cards stay even */
+.card:first-child {
+  grid-column: 1 / -1;
+}
 .num {
   font-family: var(--font-mono);
   font-size: 12px;

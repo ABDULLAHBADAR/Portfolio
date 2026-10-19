@@ -18,7 +18,7 @@ export default function Experience() {
       <div ref={rows} className={styles.rows}>
         {EXPERIENCE.map((row, i) => (
           <div
-            key={row.period}
+            key={row.title}
             ref={rv}
             className={`${styles.row} ${
               i === EXPERIENCE.length - 1 ? styles.rowLast : ''

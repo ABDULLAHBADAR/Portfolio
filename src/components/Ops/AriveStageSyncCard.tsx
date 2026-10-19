@@ -6,7 +6,7 @@ import OpsCaption from './OpsCaption'
 import styles from './Ops.module.css'
 
 /**
- * OP-07: the ARIVE stage router. Top half: the real Zapier Zap (sanitized
+ * OP-03: the ARIVE stage router. Top half: the real Zapier Zap (sanitized
  * derivative — eight path rules fanning out of the status-updated trigger)
  * slowly panning across a fixed window, one soft pulse on the paths node.
  * Bottom half: the seven per-stage GHL workflows as a live board (HTML rows,
@@ -103,7 +103,7 @@ export default function AriveStageSyncCard() {
           </Frame>
         </div>
       </div>
-      <OpsCaption c={OPS[6]} d={0.2} />
+      <OpsCaption c={OPS[2]} d={0.2} />
     </article>
   )
 }

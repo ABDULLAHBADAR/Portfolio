@@ -13,24 +13,24 @@ import styles from './Ops.module.css'
  * the work it describes (a scan pass extracting a page, the real scraper on
  * tape, a sync current between two products, an extension clicking itself,
  * the ARIVE ⇄ GHL loan pipeline replaying itself). Frame chrome is shared
- * with the Work section (../Work/Frame). Seven cards: 2×2 grid, the
- * full-width Tilda router, then the ARIVE intake/stage-router diptych.
+ * with the Work section (../Work/Frame). GHL integrations lead (full-width
+ * Tilda router, ARIVE diptych, Mindbody + extension); scrapers close it.
  */
 export default function Ops() {
   return (
     <section id="ops" className={styles.ops}>
       <div ref={rv} className={`${styles.header} rv`}>
         <h2 className={styles.title}>The quiet machinery</h2>
-        <div className={styles.label}>(05) · Ops</div>
+        <div className={styles.label}>(06) · Ops</div>
       </div>
       <div className={styles.grid}>
-        <FmlsCard />
-        <SeniorLifeCard />
-        <MindbodySyncCard />
-        <FbGroupCard />
         <TildaCard />
         <AriveIntakeCard />
         <AriveStageSyncCard />
+        <MindbodySyncCard />
+        <FbGroupCard />
+        <FmlsCard />
+        <SeniorLifeCard />
       </div>
     </section>
   )

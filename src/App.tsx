@@ -1,5 +1,6 @@
 import Hero from './components/Hero/Hero'
 import About from './components/About/About'
+import AgencyCase from './components/AgencyCase/AgencyCase'
 import Stack from './components/Stack/Stack'
 import Work from './components/Work/Work'
 import Specimens from './components/Specimens/Specimens'
@@ -18,13 +19,14 @@ export default function App() {
       <Hero />
       <main className={styles.main}>
         <About />
+        <AgencyCase />
         <Stack />
         <Work />
-        <Specimens />
-        <Ops />
         <Pipeline />
+        <Ops />
         <Experience />
         <Services />
+        <Specimens />
         <Contact />
         <Footer />
       </main>

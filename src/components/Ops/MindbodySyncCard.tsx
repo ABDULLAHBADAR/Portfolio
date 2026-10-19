@@ -6,7 +6,7 @@ import OpsCaption from './OpsCaption'
 import styles from './Ops.module.css'
 
 /**
- * OP-03: the integration as a live sync diagram. The wire draws on reveal
+ * OP-04: the integration as a live sync diagram. The wire draws on reveal
  * (Stack's language), a dashed terracotta current flows forever, and payload
  * chips (bookings / clients / classes) ride the lane from Mindbody to
  * GoHighLevel on a 9s shared loop, each arrival ringing the G node. A slow
@@ -106,7 +106,7 @@ export default function MindbodySyncCard() {
           </Frame>
         </div>
       </div>
-      <OpsCaption c={OPS[2]} d={0.2} />
+      <OpsCaption c={OPS[3]} d={0.2} />
     </article>
   )
 }

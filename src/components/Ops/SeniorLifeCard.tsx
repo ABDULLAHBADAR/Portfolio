@@ -5,7 +5,7 @@ import OpsCaption from './OpsCaption'
 import styles from './Ops.module.css'
 
 /**
- * OP-02: the real scraper on tape. The demo runs against seeded fake data,
+ * OP-07: the real scraper on tape. The demo runs against seeded fake data,
  * and the user requires that disclaimer to sit VISIBLY ABOVE the video
  * (outside the wipe so it is never clipped, never motion-gated).
  */
@@ -37,7 +37,7 @@ export default function SeniorLifeCard() {
           </Frame>
         </div>
       </div>
-      <OpsCaption c={OPS[1]} d={0.2} />
+      <OpsCaption c={OPS[6]} d={0.2} />
     </article>
   )
 }

@@ -7,7 +7,7 @@ import OpsCaption from './OpsCaption'
 import styles from './Ops.module.css'
 
 /**
- * OP-06: ARIVE → Zapier → GHL loan intake, shown through the real builder
+ * OP-02: ARIVE → Zapier → GHL loan intake, shown through the real builder
  * captures (sanitized derivatives in public/work/arive-ghl/web/ — client
  * title bars and stage-name rows cropped at derivation; originals in
  * repo-root work-src/zapier-arive-ghl). A Callyniq-style segmented control
@@ -97,7 +97,7 @@ export default function AriveIntakeCard() {
           ))}
         </div>
       </div>
-      <OpsCaption c={OPS[5]} d={0.12} />
+      <OpsCaption c={OPS[1]} d={0.12} />
     </article>
   )
 }

@@ -38,11 +38,31 @@ export interface Stat {
 }
 
 export const STATS: Stat[] = [
-  { value: '6+', label: 'Years full-stack' },
-  { value: '12+', label: 'Projects shipped' },
-  { value: 'Full', label: 'Stack range' },
+  { value: '200+', label: 'GHL sub-accounts managed' },
+  { value: '750+', label: 'Zaps managed' },
   { value: '4+', label: 'Years AI & automation' },
+  { value: '6+', label: 'Years full-stack' },
 ]
+
+/* ---------- Case study: the white-label agency ---------- */
+export const AGENCY_CASE = {
+  name: 'Konnectd',
+  tagline: 'One specialist. 150+ sub-accounts. Zero downtime.',
+  desc: 'As the sole GoHighLevel specialist at a US white-label agency, I owned 750+ Zaps across 150+ client sub-accounts, fixed a webhook race condition at the root, and ran the cutover with zero downtime.',
+  numbers: [
+    { value: '750+', label: 'Zaps' },
+    { value: '150+', label: 'Sub-accounts' },
+    { value: '0', label: 'Downtime at cutover' },
+    { value: '1', label: 'Specialist: me' },
+  ],
+  feats: [
+    '750+ Zaps across 150+ client sub-accounts',
+    'Webhook race condition traced and fixed',
+    'Zero-downtime cutover',
+  ],
+  tags: ['GoHighLevel', 'Zapier', 'Webhooks', 'White-label'],
+  loom: '', // Loom walkthrough URL; the link hides while empty
+}
 
 /* ---------- Stack: 4 columns of chips ---------- */
 export interface Chip {
@@ -180,38 +200,6 @@ export interface OpsJob {
 export const OPS: OpsJob[] = [
   {
     num: '01',
-    slug: 'fmls',
-    kind: 'Scrape',
-    title: 'FMLS listing scraper',
-    desc: "Georgia's MLS portal, scraped on schedule: listings, prices and status changes lifted into a clean feed the moment they publish.",
-    tags: ['Puppeteer', 'MLS data', 'Scheduled runs'],
-  },
-  {
-    num: '02',
-    slug: 'seniorlife',
-    kind: 'Scrape',
-    title: 'SeniorLife portal scraper',
-    desc: 'Signs into an insurance agent portal, walks every policy record and exports the book to clean CSV: shown here running against seeded demo data.',
-    tags: ['Puppeteer', 'Auth flows', 'CSV export'],
-  },
-  {
-    num: '03',
-    slug: 'mindbody-ghl',
-    kind: 'Integration',
-    title: 'Mindbody → GoHighLevel sync',
-    desc: 'Bookings, clients and classes flow from Mindbody into GoHighLevel on a schedule: no exports, no copy-paste, no missed records.',
-    tags: ['REST APIs', 'Webhooks', 'Field mapping'],
-  },
-  {
-    num: '04',
-    slug: 'fb-ghl-extension',
-    kind: 'Extension',
-    title: 'Group approvals → CRM, one click',
-    desc: "A Chrome extension that adds a Send to GHL button beside Approve on Facebook Group member requests, capturing each member's answers into the CRM at the moment of approval.",
-    tags: ['Chrome extension', 'DOM injection', 'GHL API'],
-  },
-  {
-    num: '05',
     slug: 'tilda-n8n-ghl',
     kind: 'Integration',
     title: 'Tilda forms → GHL, routed in n8n',
@@ -219,7 +207,7 @@ export const OPS: OpsJob[] = [
     tags: ['n8n', 'Tilda webhooks', 'GHL pipelines'],
   },
   {
-    num: '06',
+    num: '02',
     slug: 'arive-ghl-intake',
     kind: 'Integration',
     title: 'ARIVE loans → GHL, deduped on arrival',
@@ -227,12 +215,44 @@ export const OPS: OpsJob[] = [
     tags: ['Zapier + AI', 'Contact dedupe', 'Source attribution'],
   },
   {
-    num: '07',
+    num: '03',
     slug: 'arive-stage-sync',
     kind: 'Integration',
     title: 'Loan stages, mirrored into the CRM',
     desc: 'The LOS owns the truth about where a loan stands. Every ARIVE status change rides a Zap through eight path filters into the matching GoHighLevel workflow: seven per-stage nurtures that re-enroll the contact the moment the loan moves, so the pipeline never drifts from the source.',
     tags: ['Zapier paths', 'Stage routing', 'GHL workflows'],
+  },
+  {
+    num: '04',
+    slug: 'mindbody-ghl',
+    kind: 'Integration',
+    title: 'Mindbody → GoHighLevel sync',
+    desc: 'Bookings, clients and classes flow from Mindbody into GoHighLevel on a schedule: no exports, no copy-paste, no missed records.',
+    tags: ['REST APIs', 'Webhooks', 'Field mapping'],
+  },
+  {
+    num: '05',
+    slug: 'fb-ghl-extension',
+    kind: 'Extension',
+    title: 'Group approvals → CRM, one click',
+    desc: "A Chrome extension that adds a Send to GHL button beside Approve on Facebook Group member requests, capturing each member's answers into the CRM at the moment of approval.",
+    tags: ['Chrome extension', 'DOM injection', 'GHL API'],
+  },
+  {
+    num: '06',
+    slug: 'fmls',
+    kind: 'Scrape',
+    title: 'FMLS listing scraper',
+    desc: "Georgia's MLS portal, scraped on schedule: listings, prices and status changes lifted into a clean feed the moment they publish.",
+    tags: ['Puppeteer', 'MLS data', 'Scheduled runs'],
+  },
+  {
+    num: '07',
+    slug: 'seniorlife',
+    kind: 'Scrape',
+    title: 'SeniorLife portal scraper',
+    desc: 'Signs into an insurance agent portal, walks every policy record and exports the book to clean CSV: shown here running against seeded demo data.',
+    tags: ['Puppeteer', 'Auth flows', 'CSV export'],
   },
 ]
 
@@ -375,6 +395,11 @@ export interface ExpRow {
 
 export const EXPERIENCE: ExpRow[] = [
   {
+    period: 'Current',
+    title: 'Sole GHL specialist',
+    desc: 'The only GoHighLevel specialist at a US white-label agency, responsible for 200+ client sub-accounts.',
+  },
+  {
     period: '2024 → Now',
     title: 'Full-stack & AI products',
     desc: 'Building SaaS and AI-voice products end to end: Subdesk and Callyniq, across frontend, backend and voice.',
@@ -407,24 +432,30 @@ export interface Service {
 export const SERVICES: Service[] = [
   {
     num: '01',
+    title: 'GoHighLevel builds',
+    desc: 'GHL builds, rebuilds and SaaS-mode setup for agencies running dozens of sub-accounts. When GHL can’t do something natively, I build the missing piece.',
+    tag: 'GHL · Workflows · SaaS mode',
+  },
+  {
+    num: '02',
     title: 'Full-stack web development',
     desc: 'React, Next.js and Node apps built to last, from first commit to production.',
     tag: 'React · Next.js · Node',
   },
   {
-    num: '02',
+    num: '03',
     title: 'Workflow automation',
     desc: 'Connect your tools and kill the busywork with reliable, observable workflows.',
     tag: 'n8n · Make · Zapier',
   },
   {
-    num: '03',
+    num: '04',
     title: 'AI voice agents',
     desc: 'Receptionists and assistants that actually answer, qualify and book, around the clock.',
     tag: 'Vapi · Telephony',
   },
   {
-    num: '04',
+    num: '05',
     title: 'Web scraping & data',
     desc: 'Resilient Puppeteer pipelines that gather, clean and deliver data on schedule.',
     tag: 'Puppeteer · Pipelines',
@@ -434,4 +465,13 @@ export const SERVICES: Service[] = [
 /* ---------- Contact ---------- */
 /* Web3Forms access key: public-safe by design — it maps to the inbox
    server-side, so no email address ships with the site. */
+/* Direct contact options, shown at the top and in the contact section.
+   Any left empty is simply not rendered. */
+export const CONTACT_LINKS = {
+  email: '',
+  booking: '', // e.g. a Calendly link
+  linkedin: '',
+  upwork: '', // Upwork profile, shown with the Top Rated Plus badge
+}
+
 export const WEB3FORMS_ACCESS_KEY = '0f07db0b-fd02-4f5b-ad0d-7da179ef15e0'

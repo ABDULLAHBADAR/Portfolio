@@ -11,7 +11,7 @@ import NurtureTabs from './NurtureTabs'
 import styles from './Pipeline.module.css'
 
 /**
- * "(06) · Pipeline" — one client system traced end to end: GHL intake form →
+ * "(05) · Pipeline" — one client system traced end to end: GHL intake form →
  * booking calendar → workflow webhook → Make.com scenario → ServiceTitan →
  * status sync home.
  * Stages hang off a center rail that draws with scroll while a lead "packet"
@@ -196,7 +196,7 @@ export default function Pipeline() {
     <section id="pipeline" className={styles.pipeline}>
       <div ref={rv} className={`${styles.header} rv`}>
         <h2 className={styles.title}>One lead, end to end</h2>
-        <div className={styles.label}>(06) · Pipeline</div>
+        <div className={styles.label}>(05) · Pipeline</div>
       </div>
       <p ref={rv} className={`${styles.sub} rv`}>
         A live client system for a trades company: GoHighLevel up front,

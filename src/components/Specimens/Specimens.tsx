@@ -177,7 +177,7 @@ export default function Specimens() {
     <section id="builds" className={styles.builds}>
       <div ref={rv} className={`${styles.header} rv`}>
         <h2 className={styles.title}>Rebuilt before the pitch</h2>
-        <div className={styles.label}>(04) · Builds</div>
+        <div className={styles.label}>(09) · Builds</div>
       </div>
 
       <div className={styles.intro}>
