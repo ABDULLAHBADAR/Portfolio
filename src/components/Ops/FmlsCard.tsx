@@ -33,7 +33,7 @@ export default function FmlsCard() {
             >
               <img
                 className={styles.scanShot}
-                src="/work/fmls/web/fmls-home.jpg"
+                src={`${import.meta.env.BASE_URL}work/fmls/web/fmls-home.jpg`}
                 alt=""
                 loading="lazy"
               />

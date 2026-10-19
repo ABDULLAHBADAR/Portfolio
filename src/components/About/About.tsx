@@ -7,9 +7,9 @@ import styles from './About.module.css'
    primitive in global.css); the emphasised phrase then underlines itself.
    Split into segments so the em words carry their own style. */
 const SEG_A =
-  "I'm a full-stack developer with 3+ years turning rough ideas into production web apps. I work end-to-end in React, Next.js and Node, then wire everything together with"
-const SEG_EM = 'automation and AI'
-const SEG_B = 'so the product keeps moving without me.'
+  "I'm an AI and automation specialist with 4+ years building systems in GoHighLevel, n8n, Make and Zapier. When a tool can't do something natively,"
+const SEG_EM = 'I build the missing piece'
+const SEG_B = 'in code, backed by 6+ years of full-stack work in React, Next.js and Node.'
 
 function Words({
   text,
@@ -39,7 +39,7 @@ function Words({
 }
 
 /** Counts a leading integer up from 0 the first time it scrolls into view;
- *  non-numeric values ("Full", "AI") just reveal. */
+ *  non-numeric values ("Full") just reveal. */
 function StatValue({ value }: { value: string }) {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {

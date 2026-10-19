@@ -109,7 +109,7 @@ export default function Hero() {
 
       {/* wordmark (replaces nav) */}
       <div className={styles.wordmark}>
-        <span className={styles.wordmarkChip}>AR</span>Abdul Rehman
+        <span className={styles.wordmarkChip}>A</span>Abdullah
       </div>
       <a href="#contact" className={styles.navPill}>
         Let&apos;s talk →
@@ -118,16 +118,20 @@ export default function Hero() {
       {/* default content — data-bp marks what the blueprint redraws in place */}
       <div className={styles.contentGrid}>
         <div>
+          <div className={styles.role} data-bp="role">
+            AI &amp; Automation Expert
+          </div>
           <div className={styles.eyebrow} data-bp="eyebrow">
-            Full-stack developer · 3+ years
+            Automation · GHL · n8n · Make · 4+ years
+          </div>
+          <div className={styles.eyebrow} data-bp="eyebrow">
+            Full-stack developer · 6+ years
           </div>
           <div className={styles.serifSub} data-bp="serifSub">
-            building since 2022
+            building since 2020
           </div>
           <h1 className={styles.title} data-bp="title">
-            Abdul
-            <br />
-            Rehman
+            Abdullah
           </h1>
           <p className={styles.lead} data-bp="lead">
             I build full-stack web products, and the{' '}
@@ -150,7 +154,7 @@ export default function Hero() {
       <img
         ref={photoRef}
         src={CUTOUT_SRC}
-        alt="Abdul Rehman"
+        alt="Abdullah"
         className={styles.photo}
       />
 
@@ -168,12 +172,12 @@ export default function Hero() {
         <div className={styles.revealLabel}>// under the hood</div>
         <div className={`${styles.contentGrid} ${styles.fbText}`}>
           <div>
-            <div className={styles.eyebrow}>Full-stack developer · 3+ years</div>
-            <div className={styles.serifSub}>building since 2022</div>
+            <div className={styles.role}>AI &amp; Automation Expert</div>
+            <div className={styles.eyebrow}>Automation · GHL · n8n · Make · 4+ years</div>
+            <div className={styles.eyebrow}>Full-stack developer · 6+ years</div>
+            <div className={styles.serifSub}>building since 2020</div>
             <h1 className={styles.title}>
-              Abdul
-              <br />
-              Rehman
+              Abdullah
             </h1>
             <p className={styles.lead}>
               I build full-stack web products, and the{' '}

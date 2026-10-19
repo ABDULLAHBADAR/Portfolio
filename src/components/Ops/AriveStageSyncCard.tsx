@@ -52,7 +52,7 @@ export default function AriveStageSyncCard() {
                   style={{ '--pan': '-36%' } as CSSProperties}
                 >
                   <img
-                    src="/work/arive-ghl/web/stage-paths.jpg"
+                    src={`${import.meta.env.BASE_URL}work/arive-ghl/web/stage-paths.jpg`}
                     alt="Zapier Zap splitting ARIVE loan status updates through eight path rules, each posting into its stage workflow"
                     loading="lazy"
                   />

@@ -490,13 +490,32 @@ export function composeBlueprint(
     ctx.restore()
   }
 
-  const eyebrow = bp(root, 'eyebrow')
-  if (eyebrow) {
+  const role = bp(root, 'role')
+  if (role) {
+    const r = offsetRect(root, role)
+    const cs = getComputedStyle(role)
+    const fs = parseFloat(cs.fontSize)
+    const ls = parseFloat(cs.letterSpacing) || 0
+    ctx.save()
+    ctx.font = `${cs.fontWeight} ${fs}px Archivo, sans-serif`
+    ctx.textBaseline = 'alphabetic'
+    ctx.strokeStyle = 'rgba(26,23,18,0.6)'
+    ctx.lineWidth = 1
+    ctx.lineJoin = 'round'
+    strokeTracked(ctx, role.innerText, r.x, r.y + (r.h + fs * 0.72) / 2, ls)
+    ctx.restore()
+  }
+
+  // one or more eyebrow lines; type metrics read live so the phone
+  // breakpoint's tighter tracking registers too
+  for (const eyebrow of root.querySelectorAll<HTMLElement>('[data-bp="eyebrow"]')) {
     const r = offsetRect(root, eyebrow)
-    monoLabel(ctx, eyebrow.innerText.toUpperCase(), r.x, r.y + r.h / 2 + 4, {
-      size: 12,
+    const cs = getComputedStyle(eyebrow)
+    const fs = parseFloat(cs.fontSize)
+    monoLabel(ctx, eyebrow.innerText.toUpperCase(), r.x, r.y + (r.h + fs * 0.62) / 2, {
+      size: fs,
       color: TERRACOTTA,
-      ls: 3.6,
+      ls: parseFloat(cs.letterSpacing) || 0,
     })
   }
 

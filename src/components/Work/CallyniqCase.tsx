@@ -6,8 +6,8 @@ import Frame from './Frame'
 import styles from './Work.module.css'
 
 const VIEWS = [
-  { key: 'landing', label: 'Landing', src: '/work/callyniq/callyniq-landing-16x9.mp4', poster: '/work/callyniq/web/landing-poster.jpg' },
-  { key: 'dashboard', label: 'Dashboard', src: '/work/callyniq/callyniq-dashboard-tour.mp4', poster: '/work/callyniq/web/dashboard-poster.jpg' },
+  { key: 'landing', label: 'Landing', src: `${import.meta.env.BASE_URL}work/callyniq/callyniq-landing-16x9.mp4`, poster: `${import.meta.env.BASE_URL}work/callyniq/web/landing-poster.jpg` },
+  { key: 'dashboard', label: 'Dashboard', src: `${import.meta.env.BASE_URL}work/callyniq/callyniq-dashboard-tour.mp4`, poster: `${import.meta.env.BASE_URL}work/callyniq/web/dashboard-poster.jpg` },
 ] as const
 
 /**

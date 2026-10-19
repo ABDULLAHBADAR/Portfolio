@@ -66,6 +66,15 @@
   align-items: center;
   padding: 0 64px;
 }
+.role {
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 14px;
+  animation: ar-rise 0.8s 0s both ease-out;
+}
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 13px;
@@ -73,6 +82,9 @@
   text-transform: uppercase;
   color: var(--terracotta);
   animation: ar-rise 0.8s 0.05s both ease-out;
+}
+.eyebrow + .eyebrow {
+  margin-top: 10px;
 }
 .serifSub {
   font-family: var(--font-serif);
@@ -141,10 +153,18 @@
    the crop line sits on the hero's bottom edge. ---------- */
 .photo {
   position: absolute;
-  right: clamp(40px, 7vw, 120px);
+  /* centred in the space right of the hero copy; margin-centring (not a
+     transform) keeps offsetLeft honest for the blueprint subject measurement */
+  left: 45%;
+  right: 0;
+  top: 0;
   bottom: 0;
-  height: 76vh;
-  max-height: 720px;
+  margin: auto; /* vertical too — sits level with the name, not on the floor */
+  height: 58vh;
+  max-height: 540px;
+  /* the photo's straight bottom crop would read as a hard edge mid-hero */
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent);
   width: auto;
   z-index: 2;
   pointer-events: none;
@@ -225,6 +245,7 @@
     );
 }
 /* schematic overrides for the duplicated hero text (same classes → same layout) */
+.fbText .role,
 .fbText .eyebrow,
 .fbText .serifSub,
 .fbText .title,
@@ -234,6 +255,9 @@
 }
 .fbText .title {
   -webkit-text-stroke: 1.5px rgba(26, 23, 18, 0.6);
+}
+.fbText .role {
+  -webkit-text-stroke: 1px rgba(26, 23, 18, 0.6);
 }
 .fbText .serifSub {
   -webkit-text-stroke: 1px rgba(154, 90, 62, 0.62);
@@ -356,6 +380,17 @@
   .title {
     font-size: clamp(56px, 16vw, 96px);
   }
+  .role {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+  }
+  .eyebrow + .eyebrow {
+    margin-top: 8px;
+  }
   .serifSub {
     font-size: 22px;
   }
@@ -372,8 +407,12 @@
     font-size: 11.5px;
   }
   .photo {
-    height: 48vh; /* waist-up crop reads larger — keep it tucked */
-    right: -24px;
+    height: 34vh; /* head-and-shoulders crop reads larger — keep it tucked */
+    left: 0;
+    top: auto; /* copy stacks full-width here — stay on the floor, under it */
+    margin: 0 auto;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
   .fbModules {
     left: 24px;

@@ -38,10 +38,10 @@ export interface Stat {
 }
 
 export const STATS: Stat[] = [
-  { value: '3+', label: 'Years building' },
+  { value: '6+', label: 'Years full-stack' },
   { value: '12+', label: 'Projects shipped' },
   { value: 'Full', label: 'Stack range' },
-  { value: 'AI', label: '+ Automation' },
+  { value: '4+', label: 'Years AI & automation' },
 ]
 
 /* ---------- Stack: 4 columns of chips ---------- */
@@ -59,6 +59,16 @@ export interface StackColumn {
 
 export const STACK_COLUMNS: StackColumn[] = [
   {
+    title: 'Automation & AI',
+    chips: [
+      { label: 'GoHighLevel', letter: 'G' },
+      { label: 'n8n', slug: 'n8n' },
+      { label: 'Make.com', letter: 'M' },
+      { label: 'Zapier', slug: 'zapier' },
+      { label: 'Vapi', letter: 'V' },
+    ],
+  },
+  {
     title: 'Frontend',
     chips: [
       { label: 'React.js', slug: 'react' },
@@ -72,16 +82,6 @@ export const STACK_COLUMNS: StackColumn[] = [
     chips: [
       { label: 'Node.js', slug: 'nodedotjs' },
       { label: 'GitHub', slug: 'github' },
-    ],
-  },
-  {
-    title: 'Automation & AI',
-    chips: [
-      { label: 'n8n', slug: 'n8n' },
-      { label: 'Make.com', letter: 'M' },
-      { label: 'Zapier', slug: 'zapier' },
-      { label: 'Vapi', letter: 'V' },
-      { label: 'GoHighLevel', letter: 'G' },
     ],
   },
   {
@@ -257,7 +257,7 @@ export const PIPELINE_STAGES: PipeStage[] = [
     t: 't+0s',
     title: 'Branching intake',
     desc: 'Eight-step funnels qualify every lead before a human sees it: install or service, AC or furnace, estimate or not. Each path feeds its own automation.',
-    img: '/work/make-ghl/web/form.jpg',
+    img: `${import.meta.env.BASE_URL}work/make-ghl/web/form.jpg`,
     ratio: '1600 / 1012',
     frameLabel: 'ghl funnels · intake form',
     alt: 'Multi-step HVAC intake form with branching choices',
@@ -267,7 +267,7 @@ export const PIPELINE_STAGES: PipeStage[] = [
     t: 't+90s',
     title: 'Straight onto the calendar',
     desc: 'The last funnel step is a live calendar: three hour arrival windows, evenings included. The lead picks a slot and becomes a booked appointment, no phone tag.',
-    img: '/work/make-ghl/web/calendar.jpg',
+    img: `${import.meta.env.BASE_URL}work/make-ghl/web/calendar.jpg`,
     ratio: '1352 / 1500',
     frameLabel: 'ghl funnels · booking calendar',
     alt: 'Booking calendar with three hour appointment windows',
@@ -277,7 +277,7 @@ export const PIPELINE_STAGES: PipeStage[] = [
     t: 't+91s',
     title: 'Tag, enroll, hand off',
     desc: 'The booked appointment fires a workflow: it tags the contact, and its last step is a webhook that hands the payload to Make.com.',
-    img: '/work/make-ghl/web/trigger-workflow.jpg',
+    img: `${import.meta.env.BASE_URL}work/make-ghl/web/trigger-workflow.jpg`,
     ratio: '1600 / 1498',
     frameLabel: 'ghl workflow · webhook handoff',
     alt: 'GHL workflow builder ending in a webhook step',
@@ -287,7 +287,7 @@ export const PIPELINE_STAGES: PipeStage[] = [
     t: 't+93s',
     title: '38 modules build the job',
     desc: 'The production scenario matches the customer, assembles the payload and POSTs the job to ServiceTitan, then routes install, service and maintenance down their own branches.',
-    img: '/work/make-ghl/web/scenario-ghl-st.jpg',
+    img: `${import.meta.env.BASE_URL}work/make-ghl/web/scenario-ghl-st.jpg`,
     ratio: '1600 / 743',
     frameLabel: 'make.com · ghl to servicetitan',
     alt: 'Make.com scenario sending GHL leads to ServiceTitan',
@@ -297,7 +297,7 @@ export const PIPELINE_STAGES: PipeStage[] = [
     t: 't+15m',
     title: 'Status flows home',
     desc: 'A scheduled scenario polls ServiceTitan for job and invoice state, routes on sent, progress, complete and paid, and updates the GHL opportunity so the pipeline always tells the truth.',
-    img: '/work/make-ghl/web/scenario-get-jobs.jpg',
+    img: `${import.meta.env.BASE_URL}work/make-ghl/web/scenario-get-jobs.jpg`,
     ratio: '1600 / 740',
     frameLabel: 'make.com · get jobs from servicetitan',
     alt: 'Make.com scenario syncing ServiceTitan job status back to GHL',
@@ -307,7 +307,7 @@ export const PIPELINE_STAGES: PipeStage[] = [
 export const PIPELINE_ASIDE = {
   title: 'Self-healing auth',
   desc: 'ServiceTitan tokens expire on purpose. A two-module scenario refreshes and stores them on schedule. Nobody thinks about it, which is the point.',
-  img: '/work/make-ghl/web/scenario-token.jpg',
+  img: `${import.meta.env.BASE_URL}work/make-ghl/web/scenario-token.jpg`,
   ratio: '1600 / 673',
   frameLabel: 'make.com · token refresh',
   alt: 'Two-module Make.com scenario refreshing the ServiceTitan API token',
@@ -338,7 +338,7 @@ export const NURTURE_TABS: NurtureTab[] = [
     label: 'New leads',
     folder: '1. New Lead Workflows',
     meta: ['6 cadences', 'TCPA branches', '76 enrolled'],
-    img: '/work/make-ghl/web/tree-new-leads.jpg',
+    img: `${import.meta.env.BASE_URL}work/make-ghl/web/tree-new-leads.jpg`,
     ratio: '1047 / 1600',
     caption:
       'TCPA consent branches the cadence: SMS and email for opted-in leads, manual send tasks where consent is missing.',
@@ -348,7 +348,7 @@ export const NURTURE_TABS: NurtureTab[] = [
     label: 'Follow up',
     folder: '2. Follow Up Workflows',
     meta: ['6 cadences', 'stage-triggered'],
-    img: '/work/make-ghl/web/tree-follow-up.jpg',
+    img: `${import.meta.env.BASE_URL}work/make-ghl/web/tree-follow-up.jpg`,
     ratio: '1261 / 1600',
     caption:
       'Opportunity stage changes re-enroll the contact; six texts and three emails pace out until an answer lands.',
@@ -358,7 +358,7 @@ export const NURTURE_TABS: NurtureTab[] = [
     label: 'Appointments',
     folder: '3. Appointment Workflows',
     meta: ['confirmation + no-show', '24h and 1h reminders'],
-    img: '/work/make-ghl/web/tree-appointments.jpg',
+    img: `${import.meta.env.BASE_URL}work/make-ghl/web/tree-appointments.jpg`,
     ratio: '1504 / 1600',
     caption:
       'One workflow fans out by service category, finds or creates the opportunity, then times confirmation, 24 hour and 1 hour reminders to the booked slot.',
@@ -390,7 +390,7 @@ export const EXPERIENCE: ExpRow[] = [
     desc: 'Designed n8n / Make / Zapier workflows and built large Puppeteer scrapers for data at scale.',
   },
   {
-    period: '2021',
+    period: '2020 → 2021',
     title: 'Foundations',
     desc: 'Went deep on JavaScript, React and Node; shipped first freelance builds.',
   },
@@ -434,4 +434,4 @@ export const SERVICES: Service[] = [
 /* ---------- Contact ---------- */
 /* Web3Forms access key: public-safe by design — it maps to the inbox
    server-side, so no email address ships with the site. */
-export const WEB3FORMS_ACCESS_KEY = 'd0258083-8a2d-4716-bd7c-7555da23b27a'
+export const WEB3FORMS_ACCESS_KEY = '0f07db0b-fd02-4f5b-ad0d-7da179ef15e0'

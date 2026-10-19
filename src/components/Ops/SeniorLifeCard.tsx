@@ -23,8 +23,8 @@ export default function SeniorLifeCard() {
             <video
               ref={video}
               className={styles.media}
-              src="/work/seniorlife/scraper-demo.mp4"
-              poster="/work/seniorlife/web/demo-poster.jpg"
+              src={`${import.meta.env.BASE_URL}work/seniorlife/scraper-demo.mp4`}
+              poster={`${import.meta.env.BASE_URL}work/seniorlife/web/demo-poster.jpg`}
               muted
               loop
               playsInline

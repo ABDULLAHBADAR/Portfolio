@@ -17,7 +17,7 @@ import {
   type SubjectMaps,
 } from '../three/blueprint'
 
-export const CUTOUT_SRC = '/images/hero-cutout.png'
+export const CUTOUT_SRC = `${import.meta.env.BASE_URL}images/new-cutout.png`
 
 /**
  * All animation state lives in one mutable object (never React state) — the

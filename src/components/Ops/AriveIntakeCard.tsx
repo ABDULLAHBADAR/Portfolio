@@ -21,7 +21,7 @@ const VIEWS = [
   {
     key: 'zap',
     label: 'Zapier',
-    src: '/work/arive-ghl/web/intake-zap.jpg',
+    src: `${import.meta.env.BASE_URL}work/arive-ghl/web/intake-zap.jpg`,
     alt: 'Zapier Zap: a new loan in ARIVE triggers an AI normalize step, a filter and a webhook post into GoHighLevel',
     pan: '-39%',
     axis: 'y',
@@ -29,7 +29,7 @@ const VIEWS = [
   {
     key: 'workflow',
     label: 'GHL workflow',
-    src: '/work/arive-ghl/web/intake-workflow.jpg',
+    src: `${import.meta.env.BASE_URL}work/arive-ghl/web/intake-workflow.jpg`,
     alt: 'GoHighLevel workflow receiving the webhook: find contact, then GPT field mapping and create contact for brand-new leads',
     pan: '-17%',
     axis: 'y',
@@ -37,7 +37,7 @@ const VIEWS = [
   {
     key: 'branches',
     label: 'Source branches',
-    src: '/work/arive-ghl/web/intake-branches.jpg',
+    src: `${import.meta.env.BASE_URL}work/arive-ghl/web/intake-branches.jpg`,
     alt: 'Ten lead-source branches in the GoHighLevel workflow, each creating a source-tagged opportunity',
     pan: '-34%',
     axis: 'x',

@@ -21,7 +21,7 @@ export default function SubdeskCase() {
       <div ref={stage} className={styles.stage}>
         {/* exhibit behind, drifting slower */}
         <div ref={rv} className={`${styles.exhibit} ${styles.exhibitBack} rv rv-scale`} style={{ '--d': '0.35s' } as React.CSSProperties}>
-          <img src="/work/subdesk/web/landing-hero.jpg" alt="Subdesk landing page" loading="lazy" />
+          <img src={`${import.meta.env.BASE_URL}work/subdesk/web/landing-hero.jpg`} alt="Subdesk landing page" loading="lazy" />
           <span className={styles.exhibitTag}>landing</span>
         </div>
 
@@ -31,8 +31,8 @@ export default function SubdeskCase() {
               <video
                 ref={video}
                 className={styles.media}
-                src="/work/subdesk/Subdesk-Showcase-1080p60.mp4"
-                poster="/work/subdesk/web/showcase-poster.jpg"
+                src={`${import.meta.env.BASE_URL}work/subdesk/Subdesk-Showcase-1080p60.mp4`}
+                poster={`${import.meta.env.BASE_URL}work/subdesk/web/showcase-poster.jpg`}
                 muted
                 loop
                 playsInline
@@ -48,7 +48,7 @@ export default function SubdeskCase() {
 
         {/* exhibit in front, drifting faster */}
         <div ref={rv} className={`${styles.exhibit} ${styles.exhibitFront} rv rv-scale`} style={{ '--d': '0.5s' } as React.CSSProperties}>
-          <img src="/work/subdesk/web/dash-customizer.jpg" alt="Subdesk white-label customizer" loading="lazy" />
+          <img src={`${import.meta.env.BASE_URL}work/subdesk/web/dash-customizer.jpg`} alt="Subdesk white-label customizer" loading="lazy" />
           <span className={styles.exhibitTag}>white-label engine</span>
         </div>
       </div>
